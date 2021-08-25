@@ -3,12 +3,10 @@ import styled from 'styled-components';
 const Wrap = styled.section`
   position: relative;
   .cancel {
-    width: 10vw;
-    height: 10vw;
     text-align: center;
     position: absolute;
     z-index: 2;
-    line-height: 15vw;
+    transform: translateY(58%);
     right: 0;
   }
   .za-tabs__header {
@@ -31,20 +29,24 @@ const Wrap = styled.section`
   .container {
     display: flex;
     flex-wrap: wrap;
+    margin-right: -2.5%;
     align-content: start;
     height: calc(62vh - 150px);
     /* max-height: calc(62vh - 150px); */
-    margin-right: -5vw;
+
     overflow: scroll;
+    /* 去除滚动条 */
     scrollbar-width: none; /* Firefox */
     ::-webkit-scrollbar {
       display: none; /* Chrome Safari */
     }
     > .icon_wrap {
       color: var(--main-color);
-      width: 13vw;
-      height: 13vw;
-      margin: 5vw;
+      width: 20%;
+      height: 12vw;
+      margin-right: 5%;
+      margin-bottom: 5%;
+      margin-top: 5%;
       border-radius: 50%;
     }
     .select_icon {

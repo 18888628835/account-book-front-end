@@ -1,15 +1,25 @@
-import React, { FC } from 'react';
+import moment from 'moment';
+import React, { FC, useState } from 'react';
 import styled from 'styled-components';
+import { DatePicker } from 'zarm';
 
 const Wrap = styled.section`
   display: flex;
   flex-direction: column;
-  .pad {
+  .pad_wrap {
     display: flex;
-    flex-direction: row-reverse;
+  }
+  .date_picker {
+    text-align: center;
+    line-height: 55px;
+    width: 25%;
+  }
+  .pad {
+    flex: 5;
+    display: flex;
     font-size: 20px;
     line-height: 55px;
-    margin-right: 16px;
+    margin-left: 16px;
   }
   .number {
     border-left: 1px solid var(--main-bd-color);
@@ -32,9 +42,10 @@ const Wrap = styled.section`
   }
 `;
 type P = {
-  outPut: string;
-  onChange: (outPut: string) => void;
+  amount: string;
+  onChange: (obj: any) => void;
   onOk: () => void;
+  date: string;
 };
 const buttonList = [
   '1',
@@ -50,37 +61,37 @@ const buttonList = [
   '9',
 ];
 const NumberPad: FC<P> = props => {
-  const { outPut, onChange, onOk } = props;
+  const { amount, onChange, onOk, date } = props;
   const onClick: (e: React.MouseEvent) => void = e => {
     const a = (e.target as HTMLButtonElement).innerText;
     const array = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
-    const setOutput = (outPut: string) => {
-      if (outPut.length > 16) {
-        onChange(outPut.slice(0, 16));
+    const setAmount = (amount: string) => {
+      if (amount.length > 16) {
+        onChange({ amount: amount.slice(0, 16) });
       } else {
-        onChange(outPut);
+        onChange({ amount });
       }
     };
-    if (outPut === '0' && a !== 'ok') {
-      setOutput(a);
+    if (amount === '0' && a !== 'ok') {
+      setAmount(a);
     } else if (array.indexOf(a) >= 0) {
-      setOutput(outPut + a);
+      setAmount(amount + a);
     }
     switch (a) {
       case '清空':
-        setOutput('0');
+        setAmount('0');
         break;
       case '删除':
-        setOutput(outPut.slice(0, -1) || '0');
+        setAmount(amount.slice(0, -1) || '0');
         break;
       case '.':
-        if (outPut.indexOf('.') === -1 || outPut === '0') {
-          setOutput(outPut + '.');
+        if (amount.indexOf('.') === -1 || amount === '0') {
+          setAmount(amount + '.');
         }
         break;
       case '0':
-        if (outPut !== '0') {
-          setOutput(outPut + '0');
+        if (amount !== '0') {
+          setAmount(amount + '0');
         }
         break;
       case 'ok':
@@ -90,9 +101,33 @@ const NumberPad: FC<P> = props => {
         break;
     }
   };
+  const [datePickerVisible, setDatePickerVisible] = useState(false);
   return (
     <Wrap>
-      <div className='pad'>{outPut}</div>
+      <div className='pad_wrap'>
+        <div className='pad'>{amount}</div>
+        <div
+          className='date_picker'
+          onClick={() => {
+            setDatePickerVisible(true);
+          }}
+        >
+          {date}
+          <DatePicker
+            visible={datePickerVisible}
+            mode='date'
+            value={date}
+            onCancel={() => {
+              setDatePickerVisible(false);
+            }}
+            onOk={value => {
+              onChange({ date: moment(value).format('YYYY-MM-DD') });
+              setDatePickerVisible(false);
+            }}
+          />
+        </div>
+      </div>
+
       <div className='number' onClick={onClick}>
         {buttonList.map(v => {
           return <button key={v}>{v}</button>;

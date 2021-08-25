@@ -6,14 +6,14 @@ import { incomeList, outlayList } from '../store';
 
 type TabListPops = {
   onTabsChange: (i: any) => void;
-  selectKey: number;
+  typeId: number;
   onChange: (obj: any) => void;
 };
 const TabList: React.FC<TabListPops> = props => {
-  const { onTabsChange, selectKey, onChange } = props;
+  const { onTabsChange, typeId, onChange } = props;
   const classes = _selectKey => {
     return classNames('icon_wrap', {
-      select_icon: selectKey === _selectKey,
+      select_icon: typeId === _selectKey,
     });
   };
   return (
@@ -23,8 +23,9 @@ const TabList: React.FC<TabListPops> = props => {
           <div className='container'>
             {outlayList.map(({ name, tagName, id }) => (
               <div
+                key={tagName + id}
                 className={classes(id)}
-                onClick={() => onChange({ selectKey: id })}
+                onClick={() => onChange({ typeId: id })}
               >
                 <Svg {...{ name, tagName, key: name }} />
               </div>
@@ -37,8 +38,9 @@ const TabList: React.FC<TabListPops> = props => {
           <div className='container'>
             {incomeList.map(({ name, tagName, id }) => (
               <div
+                key={tagName + id}
                 className={classes(id)}
-                onClick={() => onChange({ selectKey: id })}
+                onClick={() => onChange({ typeId: id })}
               >
                 <Svg {...{ name, tagName, key: name }} />
               </div>

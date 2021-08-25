@@ -35,7 +35,7 @@ const Login = () => {
     });
   };
   const loginSuccess = res => {
-    localStorage.setItem('token', res.data.token);
+    localStorage.setItem('access_token', res.data.token);
     setFlyState(!flyState);
     const timer = setTimeout(() => {
       clearTimeout(timer);

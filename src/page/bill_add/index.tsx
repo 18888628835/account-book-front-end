@@ -3,18 +3,23 @@ import moment from 'moment';
 import { useHistory } from 'react-router';
 import Remark from './components/Remark';
 import NumberPad from './components/NumberPad';
+import httApi from './service/server';
 import Wrap from './_style';
 import TabList from './components/TabList';
 
 const initialValue = {
-  typeValue: 1,
-  selectKey: -1,
-  text: '',
-  outPut: '0',
+  payType: 1, //1支出 2收入
+  typeId: -1, //icon 的 id
+  remark: '', //备注
+  amount: '0', //金额
+  date: moment().format('YYYY-MM-DD'), //日期
 };
+type State = typeof initialValue;
 const AddPage = () => {
   const history = useHistory();
-  const [formData, setFormData] = useState(initialValue);
+  const addBill = httApi.servers.addBill(undefined, { manual: true });
+  const [formData, setFormData] = useState<State>(initialValue);
+
   const onChange: (obj: any) => void = obj => {
     setFormData(formData => {
       return { ...formData, ...obj };
@@ -26,17 +31,24 @@ const AddPage = () => {
   };
   const onTabsChange = i => {
     // 1收入 2支出
-    onChange({ type: i + 1 });
+    onChange({ payType: i + 1 });
   };
-
-  const onOk = () => {
+  const afterSuccess = response => {
+    httApi.handleSuccess(response, '新增成功', res => {
+      history.push('/bill/details');
+      setFormData(initialValue);
+    });
+  };
+  const onOk = async () => {
     const newState = {
       ...formData,
-      time: moment().format('YYYY-MM-DD HH:mm:ss'),
     };
-    console.log(newState);
-
-    setFormData(initialValue);
+    const response = await addBill.run({
+      data: { ...newState },
+    });
+    if (response.success) {
+      httApi.handleSuccess(response, '新增成功', afterSuccess);
+    }
   };
   return (
     <Wrap>
@@ -44,22 +56,19 @@ const AddPage = () => {
         取消
       </div>
       <div className='tab_container'>
-        <TabList
-          {...{ onChange, onTabsChange, selectKey: formData.selectKey }}
-        />
+        <TabList {...{ onChange, onTabsChange, typeId: formData.typeId }} />
       </div>
       <div className='pad_container'>
         <Remark
-          text={formData.text}
-          onChange={text => {
-            onChange({ text });
+          remark={formData.remark}
+          onChange={remark => {
+            onChange({ remark });
           }}
         />
         <NumberPad
-          outPut={formData.outPut}
-          onChange={(outPut: string) => {
-            onChange({ outPut });
-          }}
+          date={formData.date}
+          amount={formData.amount}
+          onChange={onChange}
           onOk={onOk}
         />
       </div>

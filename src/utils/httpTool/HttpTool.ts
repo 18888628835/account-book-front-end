@@ -5,7 +5,6 @@ import {
   OptionsWithFormat,
 } from '@ahooksjs/use-request/lib/types';
 import queryString from 'query-string';
-import { message } from 'antd';
 import { Toast } from 'zarm';
 
 type Method =
@@ -88,28 +87,34 @@ class HttpTool {
           throwOnError: true,
           onSuccess: this.catchFailed,
           onError: error => {
-            console.log(error);
+            console.dir(error);
           },
         }
       );
   }
   //全局失败提示,根据后端返回的结果处理
   static catchFailed(res) {
-    console.log(res);
     if (!res.success) {
       Toast.show({
         content: res.msg,
-        stayTime: 3000,
+        stayTime: 2000,
       });
+    }
+    if (res.code === 403) {
+      window.location.replace('/login');
     }
   }
   //根据处理结果向用户提示内容，可以传入一个回调做下一步动作，也可以 handleSuccess(...).then()做下一步动作
-  handleSuccess(res: any, content: string, callback?: (...rest) => any) {
+  handleSuccess(
+    res: any,
+    content: string,
+    callback?: (response, ...rest) => any
+  ) {
     return new Promise<void>((resolve, reject) => {
       if (res.success) {
         Toast.show({
           content: content,
-          stayTime: 3000,
+          stayTime: 2000,
         });
 
         const callbackResult = (callback && callback(res)) || '处理成功';

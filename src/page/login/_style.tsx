@@ -7,15 +7,14 @@ const Wrap = styled.main`
   .fly {
     display: flex;
     justify-content: center;
-    height: 200px;
+    height: 16.26rem;
     img {
-      height: 200px;
-      margin-bottom: 10;
+      height: 16.26rem;
     }
   }
   > section {
     flex: 1;
-    margin-top: 35px;
+    margin-top: 2.85rem;
     height: 100%;
   }
   .title {
@@ -24,7 +23,7 @@ const Wrap = styled.main`
     line-height: 1em;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
-    padding: 16px;
+    padding: 1.3rem;
   }
 
   .login_container {
@@ -35,13 +34,13 @@ const Wrap = styled.main`
       width: 100%;
     }
     .input_wrap {
-      padding: 16px;
+      padding: 1.3rem;
     }
   }
   .button {
     display: flex;
     justify-content: flex-end;
-    padding: 16px;
+    padding: 1.3rem;
   }
 `;
 export default Wrap;

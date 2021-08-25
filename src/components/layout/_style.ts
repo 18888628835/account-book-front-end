@@ -25,7 +25,8 @@ const Wrap = styled.section`
       border-radius: 50%;
       position: absolute;
       background-color: var(--main-bg-color);
-      right: 0;
+      left: 50%;
+      transform: translateX(-50%);
       top: -100%;
     }
     .link_wrap {
