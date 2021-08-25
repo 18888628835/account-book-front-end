@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "skipLibCheck": false,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny":false,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react",
+    //配置 ts 别名
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"],
+      "utils/*": ["src/utils/*"],
+      "public/*": ["src/public/*"],
+      "components/*": ["src/components/*"],
+    }
+  },
+  "include": ["./src"]
+}
