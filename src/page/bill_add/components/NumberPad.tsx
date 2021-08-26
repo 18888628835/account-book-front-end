@@ -1,3 +1,4 @@
+import useDatePicker from '@/hooks/use_DatePicker';
 import moment from 'moment';
 import React, { FC, useState } from 'react';
 import styled from 'styled-components';
@@ -101,7 +102,8 @@ const NumberPad: FC<P> = props => {
         break;
     }
   };
-  const [datePickerVisible, setDatePickerVisible] = useState(false);
+  const { toggleDatePickerVisible, datePickerVisible } = useDatePicker();
+
   return (
     <Wrap>
       <div className='pad_wrap'>
@@ -109,7 +111,7 @@ const NumberPad: FC<P> = props => {
         <div
           className='date_picker'
           onClick={() => {
-            setDatePickerVisible(true);
+            toggleDatePickerVisible();
           }}
         >
           {date}
@@ -118,11 +120,11 @@ const NumberPad: FC<P> = props => {
             mode='date'
             value={date}
             onCancel={() => {
-              setDatePickerVisible(false);
+              toggleDatePickerVisible();
             }}
             onOk={value => {
               onChange({ date: moment(value).format('YYYY-MM-DD') });
-              setDatePickerVisible(false);
+              toggleDatePickerVisible();
             }}
           />
         </div>

@@ -6,6 +6,7 @@ import NumberPad from './components/NumberPad';
 import httApi from './service/server';
 import Wrap from './_style';
 import TabList from './components/TabList';
+import PanelContainer from '@/components/PanelContainer';
 
 const initialValue = {
   payType: 1, //1支出 2收入
@@ -51,28 +52,30 @@ const AddPage = () => {
     }
   };
   return (
-    <Wrap>
-      <div className='cancel' onClick={onCancel}>
-        取消
-      </div>
-      <div className='tab_container'>
-        <TabList {...{ onChange, onTabsChange, typeId: formData.typeId }} />
-      </div>
-      <div className='pad_container'>
-        <Remark
-          remark={formData.remark}
-          onChange={remark => {
-            onChange({ remark });
-          }}
-        />
-        <NumberPad
-          date={formData.date}
-          amount={formData.amount}
-          onChange={onChange}
-          onOk={onOk}
-        />
-      </div>
-    </Wrap>
+    <PanelContainer>
+      <Wrap>
+        <div className='cancel' onClick={onCancel}>
+          取消
+        </div>
+        <div className='tab_container'>
+          <TabList {...{ onChange, onTabsChange, typeId: formData.typeId }} />
+        </div>
+        <div className='pad_container'>
+          <Remark
+            remark={formData.remark}
+            onChange={remark => {
+              onChange({ remark });
+            }}
+          />
+          <NumberPad
+            date={formData.date}
+            amount={formData.amount}
+            onChange={onChange}
+            onOk={onOk}
+          />
+        </div>
+      </Wrap>
+    </PanelContainer>
   );
 };
 
