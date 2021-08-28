@@ -12,8 +12,16 @@ const Wrap = styled.section`
   .bill_details_container {
     overflow: scroll;
     /* 去除滚动条 */
-
     max-height: calc(100vh - 66px - 94px);
+  }
+  .za-panel__header {
+    padding-top: 7px;
+  }
+  .za-cell:after {
+    border: none;
+  }
+  .za-panel__body:after {
+    border-bottom: none;
   }
 `;
 

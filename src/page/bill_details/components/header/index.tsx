@@ -14,7 +14,7 @@ const Header: React.FC<HeaderProps> = props => {
   const { toggleDatePickerVisible, datePickerVisible } = useDatePicker();
   return (
     <Wrap>
-      <NavBar title='鲨鱼记账' className='nav_bar' />
+      <NavBar title='布偶记账' className='nav_bar' />
       <section className='title'>
         <div className='container'>
           <div>{date.year}</div>
