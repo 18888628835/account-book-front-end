@@ -1,7 +1,6 @@
 import React from 'react';
 import PanelContainer from '@/components/PanelContainer';
 import { Avatar } from '@material-ui/core';
-import Wrap from '../../_style';
 
 const UserInfoHeader = () => {
   return (
@@ -16,18 +15,16 @@ const UserInfoHeader = () => {
             <div className='da_ka'>打卡</div>
           </div>
           <div className='user_data'>
-            <div>
-              <span>3</span>
-              <span>记账天数</span>
-            </div>
-            <div>
-              <span>3</span>
-              <span>记账天数</span>
-            </div>
-            <div>
-              <span>1</span>
-              <span>记账总笔数</span>
-            </div>
+            {[
+              { count: 3, type: '打卡次数' },
+              { count: 3, type: '记账天数' },
+              { count: 3, type: '记账总笔数' },
+            ].map(({ count, type }) => (
+              <div key={type}>
+                <span>{count}</span>
+                <span>{type}</span>
+              </div>
+            ))}
           </div>
         </header>
       </PanelContainer>

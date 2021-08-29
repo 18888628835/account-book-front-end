@@ -58,6 +58,5 @@ h6 {
 .App {
   position: relative;
   height: 100vh;
-  max-width: 375px;
   margin: 0 auto;
 }

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 const Wrap = styled.section`
   display: flex;
   flex-direction: column;
-  max-width: 375px;
   height: 100vh;
   margin: 0 auto;
   .main {
@@ -14,14 +13,14 @@ const Wrap = styled.section`
   .link_list {
     display: flex;
     justify-content: space-between;
-    padding: 5px 20px;
+    padding: 0.41rem 1.63rem;
     position: relative;
     .add {
-      font-size: 25px;
+      font-size: 2.03rem;
       text-align: center;
-      line-height: 50px;
-      width: 50px;
-      height: 50px;
+      line-height: 4.07rem;
+      width: 4.07rem;
+      height: 4.07rem;
       border-radius: 50%;
       position: absolute;
       background-color: var(--main-bg-color);

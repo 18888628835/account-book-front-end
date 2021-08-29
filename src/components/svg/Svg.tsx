@@ -6,10 +6,11 @@ const SvgS = styled.div`
   text-align: center;
   > svg {
     margin: 0 auto;
-    font-size: 26px;
+    font-size: 2.11rem;
   }
   > span {
-    margin-top: 5px;
+    margin-top: 0.41rem;
+    font-size: 1.14rem;
   }
 `;
 type P = {

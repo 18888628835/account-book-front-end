@@ -14,7 +14,6 @@ const Wrap = styled.main`
   }
   > section {
     flex: 1;
-    margin-top: 2.85rem;
     height: 100%;
   }
   .title {

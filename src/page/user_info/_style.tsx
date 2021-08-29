@@ -59,12 +59,23 @@ const Wrap = styled.section`
       padding: 0 16px;
       .bill {
         display: flex;
-        > div:nth-child(1) {
+        > div {
           display: flex;
           white-space: nowrap;
           margin-right: 4.88rem;
           flex-direction: column;
           justify-content: center;
+        }
+        .wrap_text {
+          flex: 1;
+          margin-right: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          > div {
+            display: flex;
+            justify-content: space-between;
+          }
         }
       }
     }
@@ -79,17 +90,6 @@ const Wrap = styled.section`
         }
         display: flex;
         flex-direction: column;
-      }
-    }
-    .wrap_text {
-      flex: 1;
-      margin-right: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      > div {
-        display: flex;
-        justify-content: space-between;
       }
     }
   }

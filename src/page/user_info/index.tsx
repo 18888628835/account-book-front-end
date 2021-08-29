@@ -15,18 +15,16 @@ const UserInfo = () => {
           <div className='bill_wrap'>
             <div className='bill'>
               <div>8月</div>
-              <div>
-                <div>收入</div>
-                <div>997</div>
-              </div>
-              <div>
-                <div>支出</div>
-                <div>997</div>
-              </div>
-              <div>
-                <div>结余</div>
-                <div>997</div>
-              </div>
+              {[
+                { type: '收入', money: 997 },
+                { type: '支出', money: 997 },
+                { type: '结余', money: 997 },
+              ].map(({ type, money }) => (
+                <div key={type}>
+                  <div>{type}</div>
+                  <div>{money}</div>
+                </div>
+              ))}
             </div>
           </div>
         </section>

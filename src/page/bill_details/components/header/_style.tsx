@@ -6,10 +6,17 @@ const Wrap = styled.header`
   position: sticky;
   position: -webkit-sticky;
   top: 0;
-  padding-left: 16px;
+  padding-left: 1.3rem;
   .nav_bar {
     background-color: inherit;
   }
+  .za-nav-bar__title {
+    font-size: 1.63rem;
+  }
+  .nav_bar {
+    height: 3.58rem;
+  }
+
   .title {
     display: flex;
   }
@@ -17,6 +24,7 @@ const Wrap = styled.header`
     margin-right: 5rem;
     max-width: 4.88rem;
     white-space: nowrap;
+    font-size: 1.3rem;
     > div:nth-child(2) {
       font-size: 1.46rem;
       font-weight: 400;
@@ -24,7 +32,7 @@ const Wrap = styled.header`
       align-items: center;
     }
     .month {
-      margin-right: 5px;
+      margin-right: 0.41rem;
     }
     /* css实现三角形 */
     .san {
