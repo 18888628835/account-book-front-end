@@ -7,9 +7,10 @@ const Wrap = styled.main`
   .fly {
     display: flex;
     justify-content: center;
-    height: 16.26rem;
+    max-height: 16.26rem;
+    flex: 1;
     img {
-      height: 16.26rem;
+      max-height: 16.26rem;
     }
   }
   > section {
@@ -26,6 +27,7 @@ const Wrap = styled.main`
   }
 
   .login_container {
+    flex: 1;
     .form_container {
       width: 100%;
     }

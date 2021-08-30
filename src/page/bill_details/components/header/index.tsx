@@ -39,11 +39,11 @@ const Header: React.FC<HeaderProps> = props => {
         </div>
         <div className='container'>
           <div>收入</div>
-          <div>{total.totalIncome}</div>
+          <div>{total?.totalIncome}</div>
         </div>
         <div className='container'>
           <div>支出</div>
-          <div>{total.totalOutlay}</div>
+          <div>{total?.totalOutlay}</div>
         </div>
       </section>
     </Wrap>

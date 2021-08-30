@@ -56,6 +56,7 @@ const Wrap = styled.section`
       padding: 8px 0px;
     }
     .bill_wrap {
+      margin-top: 1.3rem;
       padding: 0 16px;
       .bill {
         display: flex;

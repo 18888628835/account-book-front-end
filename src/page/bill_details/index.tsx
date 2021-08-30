@@ -81,8 +81,8 @@ const BillDetail = () => {
         onChangeDate={onChangeDate}
         date={date}
         total={{
-          totalIncome: userBills.data?.data.totalIncome,
-          totalOutlay: userBills.data?.data.totalOutlay,
+          totalIncome: userBills.data?.data?.totalIncome,
+          totalOutlay: userBills.data?.data?.totalOutlay,
         }}
       />
       <div className='bill_details_container'>
