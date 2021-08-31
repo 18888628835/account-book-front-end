@@ -6,16 +6,29 @@ import UserInfoHeader from './components/header';
 import Wrapper from './components/Wrapper';
 import Wrap from './_style';
 import httpApi from './service/server';
+import { useHistory } from 'react-router';
 
 const UserInfo = () => {
+  const history = useHistory();
   const userInfo = httpApi.servers.fetchUserInfo();
   const clockIn = httpApi.servers.clockIn(undefined, { manual: true });
   const onClockIn = () => {
+    const data = { date: Date.now() };
     clockIn.run({
-      data: {
-        date: Date.now(),
-      },
+      data,
     });
+  };
+  const onClickHandle = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+    switch (e.currentTarget.id) {
+      case 'editInfo':
+        history.push('/user/editUserInfo');
+        break;
+
+      default:
+        break;
+    }
   };
   return (
     <Wrap>
@@ -65,9 +78,17 @@ const UserInfo = () => {
           </div>
         </Wrapper>
         <Wrapper title='常用功能'>
-          <div>
-            <Svg name='icon-shezhi' tagName='修改信息' />
-          </div>
+          {[
+            {
+              id: 'editInfo',
+              name: 'icon-shezhi',
+              tagName: '修改信息',
+            },
+          ].map(({ id, name, tagName }) => (
+            <div onClick={onClickHandle} id={id} key='id'>
+              <Svg name={name} tagName={tagName} />
+            </div>
+          ))}
         </Wrapper>
       </PanelContainer>
     </Wrap>
