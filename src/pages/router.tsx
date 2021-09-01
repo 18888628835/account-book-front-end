@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as GlobalRouter, Switch, Route } from 'react-router-dom';
 import Layout from 'components/layout';
-import BillDetail from '@/page/bill_details';
-import UserInfo from '@/page/user_info';
-import BillAdd from '@/page/bill_add';
-import Login from '@/page/login';
-import EditUserInfo from './edit_user_info';
-import BillCharts from './bill_charts';
+import BillDetail from '@/pages/BillDetails';
+import UserInfo from '@/pages/UserInfo';
+import BillAdd from '@/pages/AddBill';
+import Login from '@/pages/Login';
+import EditUserInfo from './EditUserInfo';
+import BillCharts from './BillCharts';
 
 const Router = () => {
   return (

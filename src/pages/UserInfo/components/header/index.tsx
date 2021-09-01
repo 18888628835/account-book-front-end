@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PanelContainer from '@/components/PanelContainer';
 import { Avatar } from '@material-ui/core';
+import { Context } from '@/App';
 
 const UserInfoHeader = props => {
-  const { userInfo, onClockIn } = props;
+  const { onClockIn } = props;
+  const { store } = useContext(Context);
   return (
     <section className='user_info_header'>
       <PanelContainer>
         <header>
           <div className='avatar_wrap'>
             <div className='avatar_name'>
-              <Avatar alt='我' src={`${userInfo?.avatar}`} />
-              <div className='name'>{userInfo?.userName}</div>
+              <Avatar alt='我' src={`${store?.avatar}`} />
+              <div className='name'>{store?.userName}</div>
             </div>
-            {userInfo?.todayClockIn ? (
+            {store?.todayClockIn ? (
               <div>已打卡</div>
             ) : (
               <div className='da_ka' onClick={onClockIn}>
@@ -23,7 +25,7 @@ const UserInfoHeader = props => {
           </div>
           <div className='user_data'>
             {[
-              { count: userInfo?.clockInTimes, type: '打卡次数' },
+              { count: store?.clockInTimes, type: '打卡次数' },
               { count: 3, type: '记账天数' },
               { count: 3, type: '记账总笔数' },
             ].map(({ count, type }) => (

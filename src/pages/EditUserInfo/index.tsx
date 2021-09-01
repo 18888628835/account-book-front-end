@@ -1,32 +1,34 @@
 import PanelContainer from '@/components/PanelContainer';
 import { Upload } from 'antd';
-import useUserInfo from '@/hooks/use_userInfo';
-import React, { useState } from 'react';
+import useUserInfo from '@/hooks/useUserInfo';
+import React, { useState, useContext } from 'react';
 import { Icon, NavBar, Cell, ActionSheet, Modal, Button } from 'zarm';
 import { Avatar, TextField } from '@material-ui/core';
+import { Context } from '@/App';
+import { updateState } from '@/store/action';
 
 const genderParamsMap = {
   男: true,
   女: false,
 };
 const EditUserInfo = () => {
-  const { userInfo, updateUserInfo, reloadUserInfo } = useUserInfo();
+  const { store, dispatch } = useContext(Context);
+  const { updateUserInfo } = useUserInfo();
   const [actionSheetVisible, setActionSheetVisible] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [editedUserName, setEditedUserName] = useState('');
 
   const changeUserName = async newName => {
-    await updateUserInfo.run({
-      data: {
-        userName: newName,
-      },
+    await updateUserInfo({
+      userName: newName,
     });
+    dispatch(updateState({ userName: newName }));
   };
   const changeGender = (gender, genderParams) => {
     return async () => {
       if (gender !== genderParams) {
-        await updateUserInfo.run({ data: { gender: genderParams } });
-        await reloadUserInfo();
+        await updateUserInfo({ gender: genderParams });
+        dispatch(updateState({ gender: genderParams }));
       }
       onChangeActionSheetVisible();
     };
@@ -41,11 +43,11 @@ const EditUserInfo = () => {
   const BUTTONS = [
     {
       text: '男',
-      onClick: changeGender(userInfo.gender, genderParamsMap['男']),
+      onClick: changeGender(store.gender, genderParamsMap['男']),
     },
     {
       text: '女',
-      onClick: changeGender(userInfo.gender, genderParamsMap['女']),
+      onClick: changeGender(store.gender, genderParamsMap['女']),
     },
   ];
 
@@ -54,10 +56,8 @@ const EditUserInfo = () => {
       const data = {
         avatar: info.file.response.data.url,
       };
-      await updateUserInfo.run({
-        data,
-      });
-      await reloadUserInfo();
+      await updateUserInfo(data);
+      dispatch(updateState(data));
     }
   };
   return (
@@ -78,16 +78,16 @@ const EditUserInfo = () => {
                 showUploadList={false}
                 onChange={onChange}
               >
-                <Avatar src={userInfo.avatar} alt='我' />
+                <Avatar src={store.avatar} alt='我' />
               </Upload>
             </div>
           }
         />
-        <Cell title='ID' description={userInfo.id} />
+        <Cell title='ID' description={store.id} />
         <Cell
           hasArrow
           title='昵称'
-          description={userInfo.userName}
+          description={store.userName}
           onClick={() => {
             setModalVisible(!modalVisible);
           }}
@@ -96,9 +96,9 @@ const EditUserInfo = () => {
           hasArrow
           onClick={onChangeActionSheetVisible}
           title='性别'
-          description={<div>{userInfo.gender ? '男' : '女'}</div>}
+          description={<div>{store.gender ? '男' : '女'}</div>}
         />
-        <Cell title='手机号' description={userInfo.phone} />
+        <Cell title='手机号' description={store.phone} />
         <ActionSheet
           spacing
           visible={actionSheetVisible}
@@ -120,7 +120,7 @@ const EditUserInfo = () => {
               theme='primary'
               onClick={async () => {
                 await changeUserName(editedUserName);
-                await reloadUserInfo();
+
                 onChangeModalVisible();
                 setEditedUserName('');
               }}

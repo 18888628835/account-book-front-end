@@ -1,22 +1,41 @@
-import PanelContainer from '@/components/PanelContainer';
-import Svg from '@/components/svg/Svg';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Progress } from 'zarm';
+import { useHistory } from 'react-router';
+import { Context } from '@/App';
 import UserInfoHeader from './components/header';
 import Wrapper from './components/Wrapper';
 import Wrap from './_style';
 import httpApi from './service/server';
-import { useHistory } from 'react-router';
+import PanelContainer from '@/components/PanelContainer';
+import Svg from '@/components/svg/Svg';
+import { initState, updateState } from '@/store/action';
 
 const UserInfo = () => {
-  const history = useHistory();
   const userInfo = httpApi.servers.fetchUserInfo();
   const clockIn = httpApi.servers.clockIn(undefined, { manual: true });
-  const onClockIn = () => {
+  const { store, dispatch } = useContext(Context);
+
+  const history = useHistory();
+
+  useEffect(() => {
+    if (userInfo.data?.data) {
+      dispatch(initState({ ...userInfo.data?.data }));
+    }
+  }, [userInfo.data]);
+
+  const onClockIn = async () => {
     const data = { date: Date.now() };
-    clockIn.run({
+    const res = await clockIn.run({
       data,
     });
+    if (res.success) {
+      dispatch(
+        updateState({
+          todayClockIn: true,
+          clockInTimes: res.data.clockInTimes.length,
+        })
+      );
+    }
   };
   const onClickHandle = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
@@ -32,7 +51,7 @@ const UserInfo = () => {
   };
   return (
     <Wrap>
-      <UserInfoHeader userInfo={userInfo.data?.data} onClockIn={onClockIn} />
+      <UserInfoHeader onClockIn={onClockIn} />
       <PanelContainer>
         <Wrapper title='账单' hasArrow>
           <div>8月</div>
