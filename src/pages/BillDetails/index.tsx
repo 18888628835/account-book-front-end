@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Space } from 'antd';
 import styled from 'styled-components';
 import { Cell, Panel, SwipeAction, Button, Pull } from 'zarm';
@@ -6,7 +6,8 @@ import httpApi from './service/server';
 import EditableRow from './components/editableRow';
 import Header from './components/header';
 import PanelContainer from '@/components/PanelContainer';
-import moment from 'moment';
+import { Context } from '@/App';
+import { updateState } from '@/store/action';
 
 const Wrap = styled.section`
   .bill_details_container {
@@ -31,21 +32,16 @@ const Wrap = styled.section`
   }
 `;
 
-const initialDate = {
-  month: moment().format('MM'),
-  year: moment().format('YYYY'),
-};
-export type DateType = typeof initialDate;
-
 const BillDetail = () => {
-  const [date, setDate] = useState(initialDate);
-  const onChangeDate = (date: DateType) => {
-    setDate(date);
+  const { store, dispatch } = useContext(Context);
+
+  const onChangeDate = (date: Types.DateType) => {
+    dispatch(updateState(date));
   };
   const userBills = httpApi.servers.getBillsByDate(
     {
       params: {
-        month: `${date.year}-${date.month}`,
+        month: `${store.year}-${store.month}`,
       },
     },
     { manual: true }
@@ -73,21 +69,20 @@ const BillDetail = () => {
 
   useEffect(() => {
     reload();
-  }, [date]);
-
+  }, [store.year, store.month]);
   return (
     <Wrap>
       <Header
         onChangeDate={onChangeDate}
-        date={date}
+        date={{ year: store.year, month: store.month }}
         total={{
-          totalIncome: userBills.data?.data?.totalIncome,
-          totalOutlay: userBills.data?.data?.totalOutlay,
+          totalIncome: store.billDetails?.totalIncome,
+          totalOutlay: store.billDetails?.totalOutlay,
         }}
       />
       <div className='bill_details_container'>
         <PanelContainer>
-          {userBills.data?.data?.list.map(
+          {(userBills.data?.data?.list || []).map(
             ({ time, income, outlay, data }, index) => {
               return (
                 <Panel

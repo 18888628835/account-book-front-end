@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Wrap from './_style';
 import httpApi from './service/server';
 import Image from './components/image';
 import LoginModal from './components/login_modal';
 import BackgroundBubble from 'components/background_bubble';
+import { Context } from '@/App';
 const data = [
   '您好',
   '欢迎您',
@@ -20,6 +21,7 @@ const data = [
 const defaultError = { error: false, helperText: '' };
 const Login = () => {
   const history = useHistory();
+
   const [error, setsError] = useState(defaultError);
   const [flyState, setFlyState] = useState(false);
   const login = httpApi.servers.login(undefined, { manual: true });
@@ -39,6 +41,7 @@ const Login = () => {
     setFlyState(!flyState);
     const timer = setTimeout(() => {
       clearTimeout(timer);
+
       history.push('/bill/details');
     }, 800);
   };

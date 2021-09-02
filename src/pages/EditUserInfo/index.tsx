@@ -11,6 +11,7 @@ const genderParamsMap = {
   男: true,
   女: false,
 };
+
 const EditUserInfo = () => {
   const { store, dispatch } = useContext(Context);
   const { updateUserInfo } = useUserInfo();
@@ -24,6 +25,7 @@ const EditUserInfo = () => {
     });
     dispatch(updateState({ userName: newName }));
   };
+
   const changeGender = (gender, genderParams) => {
     return async () => {
       if (gender !== genderParams) {

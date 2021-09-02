@@ -9,19 +9,13 @@ import httpApi from './service/server';
 import PanelContainer from '@/components/PanelContainer';
 import Svg from '@/components/svg/Svg';
 import { initState, updateState } from '@/store/action';
+import useUserInfo from '@/hooks/useUserInfo';
 
 const UserInfo = () => {
-  const userInfo = httpApi.servers.fetchUserInfo();
   const clockIn = httpApi.servers.clockIn(undefined, { manual: true });
   const { store, dispatch } = useContext(Context);
 
   const history = useHistory();
-
-  useEffect(() => {
-    if (userInfo.data?.data) {
-      dispatch(initState({ ...userInfo.data?.data }));
-    }
-  }, [userInfo.data]);
 
   const onClockIn = async () => {
     const data = { date: Date.now() };
@@ -29,12 +23,11 @@ const UserInfo = () => {
       data,
     });
     if (res.success) {
-      dispatch(
-        updateState({
-          todayClockIn: true,
-          clockInTimes: res.data.clockInTimes.length,
-        })
-      );
+      const payload = {
+        todayClockIn: true,
+        clockInTimes: res.data.clockInTimes.length,
+      };
+      dispatch(updateState(payload));
     }
   };
   const onClickHandle = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {

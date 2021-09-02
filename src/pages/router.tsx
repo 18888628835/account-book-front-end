@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as GlobalRouter, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as _Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 import Layout from 'components/layout';
 import BillDetail from '@/pages/BillDetails';
 import UserInfo from '@/pages/UserInfo';
@@ -10,11 +15,13 @@ import BillCharts from './BillCharts';
 
 const Router = () => {
   return (
-    <GlobalRouter>
+    <_Router>
       <Switch>
-        <Route path='/' exact component={Login}></Route>
-        <Route path='/bill/add' exact component={BillAdd}></Route>
-        <Route path='/login' component={Login}></Route>
+        <Route exact path='/'>
+          <Redirect to='/login' />
+        </Route>
+        <Route path='/bill/add' exact component={BillAdd} />
+        <Route path='/login' exact component={Login} />
         <Route path='/user/editUserInfo' exact component={EditUserInfo} />
         <Layout
           footConfig={[
@@ -28,7 +35,7 @@ const Router = () => {
           <Route path='/bill/charts' exact component={BillCharts} />
         </Layout>
       </Switch>
-    </GlobalRouter>
+    </_Router>
   );
 };
 
