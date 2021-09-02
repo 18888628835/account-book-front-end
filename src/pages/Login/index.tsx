@@ -6,6 +6,7 @@ import Image from './components/image';
 import LoginModal from './components/login_modal';
 import BackgroundBubble from 'components/background_bubble';
 import { Context } from '@/App';
+import { paths } from '../router';
 const data = [
   '您好',
   '欢迎您',
@@ -42,7 +43,7 @@ const Login = () => {
     const timer = setTimeout(() => {
       clearTimeout(timer);
 
-      history.push('/bill/details');
+      history.push(paths.BILL_DETAILS);
     }, 800);
   };
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

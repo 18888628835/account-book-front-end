@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const useDatePicker = () => {
   const [datePickerVisible, setDatePickerVisible] = useState(false);

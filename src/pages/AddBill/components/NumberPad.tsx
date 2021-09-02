@@ -13,7 +13,7 @@ const Wrap = styled.section`
   .date_picker {
     text-align: center;
     line-height: 55px;
-    width: 25%;
+    min-width: 25%;
   }
   .pad {
     flex: 5;

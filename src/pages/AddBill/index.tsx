@@ -7,6 +7,7 @@ import httApi from './service/server';
 import Wrap from './css';
 import TabList from './components/TabList';
 import PanelContainer from '@/components/PanelContainer';
+import { paths } from '../router';
 
 const initialValue = {
   payType: 1, //1支出 2收入
@@ -27,8 +28,8 @@ const AddPage = () => {
     });
   };
 
-  const onCancel = () => {
-    history.push('/bill/details');
+  const toBillDetails = () => {
+    history.push(paths.BILL_DETAILS);
   };
   const onTabsChange = i => {
     // 1收入 2支出
@@ -36,7 +37,7 @@ const AddPage = () => {
   };
   const afterSuccess = response => {
     httApi.handleSuccess(response, '新增成功', res => {
-      history.push('/bill/details');
+      toBillDetails();
       setFormData(initialValue);
     });
   };
@@ -54,7 +55,7 @@ const AddPage = () => {
   return (
     <PanelContainer>
       <Wrap>
-        <div className='cancel' onClick={onCancel}>
+        <div className='cancel' onClick={toBillDetails}>
           取消
         </div>
         <div className='tab_container'>

@@ -4,13 +4,14 @@ import { NavLink } from 'react-router-dom';
 import { EditOutlined } from '@ant-design/icons';
 import Svg from '../svg/Svg';
 import Wrap from './_style';
+import { paths } from '@/pages/router';
 
 const Layout = props => {
   const { footConfig } = props;
   const history = useHistory();
 
   const goAddPage = () => {
-    history.push('/bill/add');
+    history.push(paths.ADD_BILL);
   };
   return (
     <Wrap>

@@ -9,6 +9,7 @@ import httpApi from './service/server';
 import PanelContainer from '@/components/PanelContainer';
 import Svg from '@/components/svg/Svg';
 import { updateStore } from '@/store/action';
+import { paths } from '../router';
 
 const UserInfo = () => {
   const clockIn = httpApi.servers.clockIn(undefined, { manual: true });
@@ -34,18 +35,24 @@ const UserInfo = () => {
     e.nativeEvent.stopImmediatePropagation();
     switch (e.currentTarget.id) {
       case 'editInfo':
-        history.push('/user/editUserInfo');
+        history.push(paths.EDIT_USER_INFO);
         break;
 
       default:
         break;
     }
   };
+  const toAnnualBillPage = () => {
+    history.push(paths.ANNUAL_BILL);
+  };
+  const toFullBudgetPage = () => {
+    history.push(paths.FULL_BUDGET);
+  };
   return (
     <Wrap>
       <UserInfoHeader onClockIn={onClockIn} />
       <PanelContainer>
-        <Wrapper title='账单' hasArrow>
+        <Wrapper title='账单' hasArrow onClick={toAnnualBillPage}>
           <div>8月</div>
           {[
             { type: '收入', money: 997 },
@@ -58,7 +65,12 @@ const UserInfo = () => {
             </div>
           ))}
         </Wrapper>
-        <Wrapper title='08月总预算' hasArrow description='查看全部'>
+        <Wrapper
+          title='08月总预算'
+          hasArrow
+          description='查看全部'
+          onClick={toFullBudgetPage}
+        >
           <div className='circle_wrap'>
             <Progress
               text={percent => (

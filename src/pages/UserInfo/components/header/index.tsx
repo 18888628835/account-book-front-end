@@ -2,16 +2,20 @@ import React, { useContext } from 'react';
 import PanelContainer from '@/components/PanelContainer';
 import { Avatar } from '@material-ui/core';
 import { Context } from '@/App';
+import { useHistory } from 'react-router';
+import { paths } from '@/pages/router';
 
 const UserInfoHeader = props => {
   const { onClockIn } = props;
   const { store } = useContext(Context);
+  const history = useHistory();
+  const toEditUserInfoPage = () => history.push(paths.EDIT_USER_INFO);
   return (
     <section className='user_info_header'>
       <PanelContainer>
         <header>
           <div className='avatar_wrap'>
-            <div className='avatar_name'>
+            <div className='avatar_name' onClick={toEditUserInfoPage}>
               <Avatar alt='我' src={`${store?.avatar}`} />
               <div className='name'>{store?.userName}</div>
             </div>

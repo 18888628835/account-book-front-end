@@ -1,12 +1,11 @@
 import useDatePicker from '@/hooks/useDatePicker';
-import { DateType } from '../../index';
 import moment from 'moment';
 import React from 'react';
 import { DatePicker, NavBar } from 'zarm';
 import Wrap from './_style';
 type HeaderProps = {
-  date: DateType;
-  onChangeDate: (date: DateType) => void;
+  date: Types.DateType;
+  onChangeDate: (date: Types.DateType) => void;
   total: { totalIncome: number; totalOutlay: number };
 };
 const Header: React.FC<HeaderProps> = props => {

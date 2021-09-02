@@ -6,7 +6,7 @@ const Wrap = styled.header`
   position: sticky;
   position: -webkit-sticky;
   top: 0;
-  padding-left: 1.3rem;
+
   .nav_bar {
     background-color: inherit;
   }
@@ -19,6 +19,7 @@ const Wrap = styled.header`
 
   .title {
     display: flex;
+    padding-left: 1.3rem;
   }
   .container {
     margin-right: 5rem;

@@ -10,7 +10,7 @@ const SvgS = styled.div`
   }
   > span {
     margin-top: 0.41rem;
-    font-size: 1.14rem;
+    font-size: 0.98rem;
   }
 `;
 type P = {

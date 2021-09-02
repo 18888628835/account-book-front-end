@@ -1,4 +1,4 @@
-import HttpTool from '@/utils/httpTool/HttpTool';
+import HttpTool from '@/utils/HttpTool';
 
 export default new HttpTool({
   fetchUserInfo: 'GET /api/user/getUserInfo',
