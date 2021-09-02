@@ -4,16 +4,15 @@ import { useHistory } from 'react-router';
 import { Context } from '@/App';
 import UserInfoHeader from './components/header';
 import Wrapper from './components/Wrapper';
-import Wrap from './_style';
+import Wrap from './css';
 import httpApi from './service/server';
 import PanelContainer from '@/components/PanelContainer';
 import Svg from '@/components/svg/Svg';
-import { initState, updateState } from '@/store/action';
-import useUserInfo from '@/hooks/useUserInfo';
+import { updateStore } from '@/store/action';
 
 const UserInfo = () => {
   const clockIn = httpApi.servers.clockIn(undefined, { manual: true });
-  const { store, dispatch } = useContext(Context);
+  const { dispatch } = useContext(Context);
 
   const history = useHistory();
 
@@ -27,7 +26,7 @@ const UserInfo = () => {
         todayClockIn: true,
         clockInTimes: res.data.clockInTimes.length,
       };
-      dispatch(updateState(payload));
+      dispatch(updateStore(payload));
     }
   };
   const onClickHandle = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {

@@ -1,42 +1,19 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Space } from 'antd';
-import styled from 'styled-components';
 import { Cell, Panel, SwipeAction, Button, Pull } from 'zarm';
 import httpApi from './service/server';
 import EditableRow from './components/editableRow';
 import Header from './components/header';
 import PanelContainer from '@/components/PanelContainer';
 import { Context } from '@/App';
-import { updateState } from '@/store/action';
-
-const Wrap = styled.section`
-  .bill_details_container {
-    overflow: scroll;
-    /* 去除滚动条 */
-    max-height: calc(100vh - 5.37rem - 7.64rem);
-  }
-  .za-panel__header {
-    padding: 0.57rem 1.3rem 0.57rem 1.3rem;
-    font-size: 1.14rem;
-  }
-  .za-cell:after {
-    border: none;
-    font-size: 1.22rem;
-  }
-  .za-cell__title {
-    padding: 1.22rem 0;
-    font-size: 1.22rem;
-  }
-  .za-panel__body:after {
-    border-bottom: none;
-  }
-`;
+import { updateStore } from '@/store/action';
+import Wrap from './css';
 
 const BillDetail = () => {
   const { store, dispatch } = useContext(Context);
 
   const onChangeDate = (date: Types.DateType) => {
-    dispatch(updateState(date));
+    dispatch(updateStore(date));
   };
   const userBills = httpApi.servers.getBillsByDate(
     {
@@ -68,7 +45,7 @@ const BillDetail = () => {
   };
 
   useEffect(() => {
-    reload();
+    if (store.year && store.month) reload();
   }, [store.year, store.month]);
   return (
     <Wrap>

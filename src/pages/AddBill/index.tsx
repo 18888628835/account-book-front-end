@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 import Remark from './components/Remark';
 import NumberPad from './components/NumberPad';
 import httApi from './service/server';
-import Wrap from './_style';
+import Wrap from './css';
 import TabList from './components/TabList';
 import PanelContainer from '@/components/PanelContainer';
 

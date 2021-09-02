@@ -5,7 +5,7 @@ import React, { useState, useContext } from 'react';
 import { Icon, NavBar, Cell, ActionSheet, Modal, Button } from 'zarm';
 import { Avatar, TextField } from '@material-ui/core';
 import { Context } from '@/App';
-import { updateState } from '@/store/action';
+import { updateStore } from '@/store/action';
 
 const genderParamsMap = {
   男: true,
@@ -23,14 +23,14 @@ const EditUserInfo = () => {
     await updateUserInfo({
       userName: newName,
     });
-    dispatch(updateState({ userName: newName }));
+    dispatch(updateStore({ userName: newName }));
   };
 
   const changeGender = (gender, genderParams) => {
     return async () => {
       if (gender !== genderParams) {
         await updateUserInfo({ gender: genderParams });
-        dispatch(updateState({ gender: genderParams }));
+        dispatch(updateStore({ gender: genderParams }));
       }
       onChangeActionSheetVisible();
     };
@@ -59,7 +59,7 @@ const EditUserInfo = () => {
         avatar: info.file.response.data.url,
       };
       await updateUserInfo(data);
-      dispatch(updateState(data));
+      dispatch(updateStore(data));
     }
   };
   return (

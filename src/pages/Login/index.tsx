@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import Wrap from './_style';
+import Wrap from './css';
 import httpApi from './service/server';
 import Image from './components/image';
 import LoginModal from './components/login_modal';
