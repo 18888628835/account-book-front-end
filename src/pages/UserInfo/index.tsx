@@ -51,7 +51,7 @@ const UserInfo = () => {
   return (
     <Wrap>
       <UserInfoHeader onClockIn={onClockIn} />
-      <PanelContainer>
+      <div className='wrap_content'>
         <Wrapper title='账单' hasArrow onClick={toAnnualBillPage}>
           <div>8月</div>
           {[
@@ -113,7 +113,7 @@ const UserInfo = () => {
             </div>
           ))}
         </Wrapper>
-      </PanelContainer>
+      </div>
     </Wrap>
   );
 };

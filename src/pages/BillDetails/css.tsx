@@ -4,7 +4,7 @@ const Wrap = styled.section`
   .bill_details_container {
     overflow: scroll;
     /* 去除滚动条 */
-    max-height: calc(100vh - 5.37rem - 7.64rem);
+    max-height: calc(100vh - 5.37rem - 7.89rem);
   }
   .za-panel__header {
     padding: 0.57rem 1.3rem 0.57rem 1.3rem;

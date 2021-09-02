@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 const Wrap = styled.section`
   flex: 1;
+  overflow-y: hidden;
+  overflow-x: hidden;
   background-color: #f6f6f6;
   .user_info_header {
     background-color: white;
     header {
-      padding-left: 16px;
-      padding-right: 16px;
-      padding-bottom: 2.03rem;
+      padding: 16px;
     }
     .avatar_name {
       display: flex;
@@ -20,7 +20,6 @@ const Wrap = styled.section`
     }
     .avatar_wrap {
       display: flex;
-      margin-top: 1.63rem;
       justify-content: space-between;
       align-items: center;
       .da_ka {
@@ -39,7 +38,10 @@ const Wrap = styled.section`
       }
     }
   }
-
+  .wrap_content {
+    overflow-y: scroll;
+    max-height: calc(100vh - 17rem);
+  }
   .bill_container {
     margin: 15px 0;
     border-radius: 8px;
