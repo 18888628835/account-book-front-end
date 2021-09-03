@@ -15,7 +15,7 @@ const SvgS = styled.div`
 `;
 type P = {
   name: string;
-  tagName: string;
+  tagName?: string;
 };
 const Svg: FunctionComponent<P> = props => {
   return (
@@ -23,7 +23,7 @@ const Svg: FunctionComponent<P> = props => {
       <svg className='icon' aria-hidden='true'>
         <use xlinkHref={`#${props.name}`}></use>
       </svg>
-      <span>{props.tagName}</span>
+      {props.tagName && <span>{props.tagName}</span>}
     </SvgS>
   );
 };

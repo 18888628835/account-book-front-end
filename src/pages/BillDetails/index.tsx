@@ -1,14 +1,12 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { Space } from 'antd';
-import { Cell, Panel, SwipeAction, Button, Pull } from 'zarm';
+import React, { useEffect, useContext } from 'react';
+import { Empty } from 'antd';
 import httpApi from './service/server';
-import EditableRow from './components/editableRow';
 import Header from './components/header';
 import PanelContainer from '@/components/PanelContainer';
 import { Context } from '@/App';
 import { updateStore } from '@/store/action';
 import Wrap from './css';
-import Svg from '@/components/svg/Svg';
+import CellContent from './components/CellContent';
 
 const BillDetail = () => {
   const { store, dispatch } = useContext(Context);
@@ -60,67 +58,13 @@ const BillDetail = () => {
       />
       <div className='bill_details_container'>
         <PanelContainer>
-          {(userBills.data?.data?.list || []).map(
-            ({ time, income, outlay, data }, index) => {
-              return (
-                <Panel
-                  key={index + time}
-                  title={time}
-                  more={
-                    <Space>
-                      <span>支出:{outlay}</span>
-                      <span>收入:{income}</span>
-                    </Space>
-                  }
-                >
-                  {data.map(({ amount, payType, remark, id, typeName }) => {
-                    return (
-                      <SwipeAction
-                        key={id}
-                        right={[
-                          <Button
-                            {...{
-                              key: 'delete',
-                              size: 'lg',
-                              shape: 'rect',
-                              theme: 'danger',
-                              onClick: () => onDelete(id),
-                            }}
-                          >
-                            删除
-                          </Button>,
-                        ]}
-                      >
-                        <Cell
-                          title={
-                            <div className='icon_remark_wrap'>
-                              <Svg name={typeName} tagName='' />
-                              <EditableRow
-                                text={remark}
-                                onSubmit={remark => {
-                                  onUpdateSubmit({ id, remark });
-                                  reload();
-                                }}
-                              />
-                            </div>
-                          }
-                          description={
-                            <EditableRow
-                              text={amount}
-                              payType={payType}
-                              onSubmit={amount => {
-                                onUpdateSubmit({ id, amount });
-                                reload();
-                              }}
-                            />
-                          }
-                        />
-                      </SwipeAction>
-                    );
-                  })}
-                </Panel>
-              );
-            }
+          {userBills.data?.data?.list.length === 0 ? (
+            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+          ) : (
+            <CellContent
+              data={userBills.data?.data?.list}
+              {...{ onDelete, onUpdateSubmit, reload }}
+            />
           )}
         </PanelContainer>
       </div>
