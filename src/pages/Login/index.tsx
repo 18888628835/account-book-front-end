@@ -7,6 +7,7 @@ import LoginModal from './components/login_modal';
 import BackgroundBubble from 'components/background_bubble';
 import { Context } from '@/App';
 import { paths } from '../router';
+import { NoticeBar } from 'zarm';
 const data = [
   '您好',
   '欢迎您',
@@ -69,6 +70,9 @@ const Login = () => {
 
   return (
     <Wrap>
+      <NoticeBar>
+        请您使用手机浏览器预览。或者您可以通过F12开发者工具-手机模式预览
+      </NoticeBar>
       <Image showData={flyState} />
       <LoginModal {...{ error, onSubmit }} />
       <BackgroundBubble data={data} />
