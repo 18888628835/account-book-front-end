@@ -8,6 +8,7 @@ import PanelContainer from '@/components/PanelContainer';
 import { Context } from '@/App';
 import { updateStore } from '@/store/action';
 import Wrap from './css';
+import Svg from '@/components/svg/Svg';
 
 const BillDetail = () => {
   const { store, dispatch } = useContext(Context);
@@ -72,7 +73,7 @@ const BillDetail = () => {
                     </Space>
                   }
                 >
-                  {data.map(({ amount, payType, remark, id }) => {
+                  {data.map(({ amount, payType, remark, id, typeName }) => {
                     return (
                       <SwipeAction
                         key={id}
@@ -92,13 +93,16 @@ const BillDetail = () => {
                       >
                         <Cell
                           title={
-                            <EditableRow
-                              text={remark}
-                              onSubmit={remark => {
-                                onUpdateSubmit({ id, remark });
-                                reload();
-                              }}
-                            />
+                            <div className='icon_remark_wrap'>
+                              <Svg name={typeName} tagName='' />
+                              <EditableRow
+                                text={remark}
+                                onSubmit={remark => {
+                                  onUpdateSubmit({ id, remark });
+                                  reload();
+                                }}
+                              />
+                            </div>
                           }
                           description={
                             <EditableRow

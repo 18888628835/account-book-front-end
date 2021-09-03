@@ -6,14 +6,14 @@ import { incomeList, outlayList } from '../store';
 
 type TabListPops = {
   onTabsChange: (i: any) => void;
-  typeId: number;
+  typeName: string;
   onChange: (obj: any) => void;
 };
 const TabList: React.FC<TabListPops> = props => {
-  const { onTabsChange, typeId, onChange } = props;
+  const { onTabsChange, typeName, onChange } = props;
   const classes = _selectKey => {
     return classNames('icon_wrap', {
-      select_icon: typeId === _selectKey,
+      select_icon: typeName === _selectKey,
     });
   };
   return (
@@ -21,13 +21,13 @@ const TabList: React.FC<TabListPops> = props => {
       <Panel title='支出'>
         <div className='content'>
           <div className='container'>
-            {outlayList.map(({ name, tagName, id }) => (
+            {outlayList.map(({ typeName, tagName }) => (
               <div
-                key={tagName + id}
-                className={classes(id)}
-                onClick={() => onChange({ typeId: id })}
+                key={typeName}
+                className={classes(typeName)}
+                onClick={() => onChange({ typeName })}
               >
-                <Svg {...{ name, tagName, key: name }} />
+                <Svg {...{ name: typeName, tagName, key: typeName }} />
               </div>
             ))}
           </div>
@@ -36,13 +36,13 @@ const TabList: React.FC<TabListPops> = props => {
       <Panel title='收入'>
         <div className='content'>
           <div className='container'>
-            {incomeList.map(({ name, tagName, id }) => (
+            {incomeList.map(({ typeName, tagName }) => (
               <div
-                key={tagName + id}
-                className={classes(id)}
-                onClick={() => onChange({ typeId: id })}
+                key={tagName}
+                className={classes(typeName)}
+                onClick={() => onChange({ typeName })}
               >
-                <Svg {...{ name, tagName, key: name }} />
+                <Svg {...{ name: typeName, tagName, key: typeName }} />
               </div>
             ))}
           </div>

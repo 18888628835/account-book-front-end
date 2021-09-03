@@ -11,7 +11,7 @@ import { paths } from '../router';
 
 const initialValue = {
   payType: 1, //1支出 2收入
-  typeId: -1, //icon 的 id
+  typeName: '', //icon 的 id
   remark: '', //备注
   amount: '0', //金额
   date: moment().format('YYYY-MM-DD'), //日期
@@ -59,7 +59,9 @@ const AddPage = () => {
           取消
         </div>
         <div className='tab_container'>
-          <TabList {...{ onChange, onTabsChange, typeId: formData.typeId }} />
+          <TabList
+            {...{ onChange, onTabsChange, typeName: formData.typeName }}
+          />
         </div>
         <div className='pad_container'>
           <Remark

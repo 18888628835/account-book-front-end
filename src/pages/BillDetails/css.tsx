@@ -24,5 +24,12 @@ const Wrap = styled.section`
   .za-panel__body:after {
     border-bottom: none;
   }
+  .icon_remark_wrap {
+    display: flex;
+    align-items: center;
+    > div:nth-child(1) {
+      margin-right: 0.81rem;
+    }
+  }
 `;
 export default Wrap;
