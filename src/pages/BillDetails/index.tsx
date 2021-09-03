@@ -53,8 +53,8 @@ const BillDetail = () => {
         onChangeDate={onChangeDate}
         date={{ year: store.year, month: store.month }}
         total={{
-          totalIncome: store.billDetails?.totalIncome,
-          totalOutlay: store.billDetails?.totalOutlay,
+          totalIncome: userBills.data?.data?.totalIncome,
+          totalOutlay: userBills.data?.data?.totalOutlay,
         }}
       />
       <div className='bill_details_container'>

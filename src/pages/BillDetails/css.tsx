@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 const Wrap = styled.section`
+  .za-nav-bar__title {
+    font-size: 1.46rem;
+  }
   .bill_details_container {
     overflow: scroll;
     /* 去除滚动条 */

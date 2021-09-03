@@ -7,10 +7,12 @@ const Wrap = styled.main`
   .fly {
     display: flex;
     justify-content: center;
-    max-height: 16.26rem;
+    height: 16.26rem;
+    max-height: 300px;
     flex: 1;
     img {
-      max-height: 16.26rem;
+      max-height: 300px;
+      height: 16.26rem;
     }
   }
   > section {
@@ -18,7 +20,7 @@ const Wrap = styled.main`
     height: 100%;
   }
   .title {
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 500;
     line-height: 1em;
     text-transform: uppercase;
