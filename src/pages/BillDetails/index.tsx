@@ -14,6 +14,7 @@ const BillDetail = () => {
   const onChangeDate = (date: Types.DateType) => {
     dispatch(updateStore(date));
   };
+
   const userBills = httpApi.servers.getBillsByDate(
     {
       params: {
@@ -23,15 +24,24 @@ const BillDetail = () => {
     { manual: true }
   );
 
-  const reload = () => {
-    userBills.run();
-  };
   const updateBill = httpApi.servers.updateBill(undefined, { manual: true });
+
+  const loadUserBills = async () => {
+    const result = await userBills.run();
+    //把本月总收入跟总支出更新到仓库中
+    dispatch(
+      updateStore({
+        totalIncome: result.data?.totalIncome,
+        totalOutlay: result.data?.totalOutlay,
+      })
+    );
+  };
   const onUpdateSubmit = data => {
     updateBill.run({
       data,
     });
   };
+
   const onDelete = async id => {
     const data = {
       id,
@@ -40,11 +50,11 @@ const BillDetail = () => {
     const response = await updateBill.run({
       data,
     });
-    if (response.success) reload();
+    if (response.success) loadUserBills();
   };
 
   useEffect(() => {
-    if (store.year && store.month) reload();
+    if (store.year && store.month) loadUserBills();
   }, [store.year, store.month]);
   return (
     <Wrap>
@@ -63,7 +73,7 @@ const BillDetail = () => {
           ) : (
             <CellContent
               data={userBills.data?.data?.list}
-              {...{ onDelete, onUpdateSubmit, reload }}
+              {...{ onDelete, onUpdateSubmit, loadUserBills }}
             />
           )}
         </PanelContainer>

@@ -5,7 +5,7 @@ import { Panel, SwipeAction, Button, Cell } from 'zarm';
 import EditableRow from '../editableRow';
 
 const CellContent = props => {
-  const { data, onDelete, onUpdateSubmit, reload } = props;
+  const { data, onDelete, onUpdateSubmit, loadUserBills } = props;
   return (
     <div>
       {(data || []).map(({ time, income, outlay, data }, index) => {
@@ -46,7 +46,7 @@ const CellContent = props => {
                           text={remark}
                           onSubmit={remark => {
                             onUpdateSubmit({ id, remark });
-                            reload();
+                            loadUserBills();
                           }}
                         />
                       </div>
@@ -57,7 +57,7 @@ const CellContent = props => {
                         payType={payType}
                         onSubmit={amount => {
                           onUpdateSubmit({ id, amount });
-                          reload();
+                          loadUserBills();
                         }}
                       />
                     }
