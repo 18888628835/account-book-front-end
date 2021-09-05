@@ -41,7 +41,6 @@ const Wrap = styled.section`
       display: none; /* Chrome Safari */
     }
     > .icon_wrap {
-      color: var(--main-color);
       width: 20%;
       height: 12vw;
       margin-right: 5%;
@@ -50,7 +49,7 @@ const Wrap = styled.section`
       border-radius: 50%;
     }
     .select_icon {
-      color: black;
+      color: #ce3a53;
     }
   }
   .pad_container {

@@ -12,8 +12,9 @@ type TabListPops = {
 const TabList: React.FC<TabListPops> = props => {
   const { onTabsChange, typeName, onChange } = props;
   const classes = _selectKey => {
-    return classNames('icon_wrap', {
+    return classNames('icon_wrap', 'animate__animated', {
       select_icon: typeName === _selectKey,
+      animate__rubberBand: typeName === _selectKey,
     });
   };
   return (

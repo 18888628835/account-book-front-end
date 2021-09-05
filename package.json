@@ -12,6 +12,7 @@
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
     "ahooks": "^2.10.9",
+    "animate.css": "^4.1.1",
     "antd": "^4.16.12",
     "classnames": "^2.3.1",
     "echarts": "^5.1.2",
