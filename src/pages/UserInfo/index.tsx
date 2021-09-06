@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Progress } from 'zarm';
 import { useHistory } from 'react-router';
 import { Context } from '@/App';
@@ -6,10 +6,20 @@ import UserInfoHeader from './components/header';
 import Wrapper from './components/Wrapper';
 import Wrap from './css';
 import httpApi from './service/server';
-import PanelContainer from '@/components/PanelContainer';
 import Svg from '@/components/svg/Svg';
 import { updateStore } from '@/store/action';
 import { paths } from '../router';
+
+const calcPercent = (outLay: number, budget: number) => {
+  if (!budget) {
+    return 0;
+  }
+  // 超预算
+  if (budget - outLay < 0) {
+    return 0;
+  }
+  return Math.floor(((budget - outLay) / budget) * 100);
+};
 
 const UserInfo = () => {
   const clockIn = httpApi.servers.clockIn(undefined, { manual: true });
@@ -50,16 +60,20 @@ const UserInfo = () => {
   const toFullBudgetPage = () => {
     history.push(paths.FULL_BUDGET);
   };
+
   return (
     <Wrap>
       <UserInfoHeader onClockIn={onClockIn} />
       <div className='wrap_content'>
         <Wrapper title='账单' hasArrow onClick={toAnnualBillPage}>
-          <div>8月</div>
+          <div>{store.month}月</div>
           {[
-            { type: '收入', money: 997 },
-            { type: '支出', money: 997 },
-            { type: '结余', money: 997 },
+            { type: '收入', money: store.totalIncome },
+            { type: '支出', money: store.totalOutlay },
+            {
+              type: '结余',
+              money: Number(store.budget || 0) - Number(store.totalOutlay || 0),
+            },
           ].map(({ type, money }) => (
             <div key={type}>
               <div>{type}</div>
@@ -82,7 +96,10 @@ const UserInfo = () => {
                 </div>
               )}
               shape='circle'
-              percent={90}
+              percent={calcPercent(
+                Number(store.totalOutlay),
+                Number(store.budget)
+              )}
               strokeShape='round'
               strokeWidth={8}
               theme='danger'
