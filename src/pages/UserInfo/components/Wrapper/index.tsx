@@ -8,7 +8,13 @@ type WrapperPropr = {
   onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
 const Wrapper: React.FC<WrapperPropr> = props => {
-  const { title, description, hasArrow = false, onClick } = props;
+  const {
+    title,
+    description = '',
+    hasArrow = false,
+    onClick,
+    children,
+  } = props;
   return (
     <section className='bill_container'>
       <Cell
@@ -18,7 +24,7 @@ const Wrapper: React.FC<WrapperPropr> = props => {
         onClick={onClick}
       />
       <div className='bill_wrap'>
-        <div className='bill'>{props.children}</div>
+        <div className='bill'>{children}</div>
       </div>
     </section>
   );

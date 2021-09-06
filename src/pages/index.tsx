@@ -7,12 +7,14 @@ import { initStore } from '@/store/action';
 import moment from 'moment';
 import { Context } from '@/App';
 import Routes from './router';
+import useBillDetails from '@/hooks/useBillDetails';
 
 const Index = () => {
   const location = useLocation();
   const { pathname } = location;
   const { dispatch } = useContext(Context);
   const { fetchUserInfo } = useUserInfo();
+  const { fetchBillDetails } = useBillDetails();
   const ref = useRef(0);
 
   const initCore = async () => {
@@ -23,9 +25,11 @@ const Index = () => {
       month: moment().format('MM'),
       year: moment().format('YYYY'),
     };
+    const response = await fetchBillDetails(initialDate);
     const initialStore = {
       ...res.data,
       ...initialDate,
+      ...response.data,
     };
     dispatch(initStore(initialStore));
   };

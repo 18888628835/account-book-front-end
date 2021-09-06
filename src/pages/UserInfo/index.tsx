@@ -13,7 +13,7 @@ import { paths } from '../router';
 
 const UserInfo = () => {
   const clockIn = httpApi.servers.clockIn(undefined, { manual: true });
-  const { dispatch } = useContext(Context);
+  const { dispatch, store } = useContext(Context);
 
   const history = useHistory();
 
@@ -37,7 +37,9 @@ const UserInfo = () => {
       case 'editInfo':
         history.push(paths.EDIT_USER_INFO);
         break;
-
+      case 'editBudget':
+        prompt('请输入预算');
+        break;
       default:
         break;
     }
@@ -66,7 +68,7 @@ const UserInfo = () => {
           ))}
         </Wrapper>
         <Wrapper
-          title='08月总预算'
+          title={`${store?.month}月总预算`}
           hasArrow
           description='查看全部'
           onClick={toFullBudgetPage}
@@ -89,9 +91,13 @@ const UserInfo = () => {
           </div>
           <div className='wrap_text'>
             {[
-              { title: '剩余预算:', number: 1000 },
-              { title: '本月预算:', number: 1000 },
-              { title: '本月支出:', number: 1000 },
+              {
+                title: '剩余预算:',
+                number:
+                  Number(store?.budget || 0) - Number(store?.totalOutlay || 0),
+              },
+              { title: '本月预算:', number: store?.budget || 0 },
+              { title: '本月支出:', number: store?.totalOutlay },
             ].map(({ title, number }) => (
               <div key={title}>
                 <span>{title}</span>
@@ -107,8 +113,13 @@ const UserInfo = () => {
               name: 'icon-shezhi',
               tagName: '修改信息',
             },
+            {
+              id: 'editBudget',
+              name: 'icon-bianji',
+              tagName: '编辑预算',
+            },
           ].map(({ id, name, tagName }) => (
-            <div onClick={onClickHandle} id={id} key='id'>
+            <div onClick={onClickHandle} id={id} key={id}>
               <Svg name={name} tagName={tagName} />
             </div>
           ))}

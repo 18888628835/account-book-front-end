@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import moment from 'moment';
 import { useHistory } from 'react-router';
 import Remark from './components/Remark';
@@ -8,6 +8,10 @@ import Wrap from './css';
 import TabList from './components/TabList';
 import PanelContainer from '@/components/PanelContainer';
 import { paths } from '../router';
+import useBillDetails from '@/hooks/useBillDetails';
+import { Store } from '@material-ui/icons';
+import { Context } from '@/App';
+import { updateStore } from '@/store/action';
 
 const initialValue = {
   payType: 1, //1支出 2收入
@@ -19,7 +23,9 @@ const initialValue = {
 type State = typeof initialValue;
 const AddPage = () => {
   const history = useHistory();
+  const { store, dispatch } = useContext(Context);
   const addBill = httApi.servers.addBill(undefined, { manual: true });
+  const { fetchBillDetails } = useBillDetails();
   const [formData, setFormData] = useState<State>(initialValue);
 
   const onChange: (obj: any) => void = obj => {
@@ -48,7 +54,14 @@ const AddPage = () => {
     const response = await addBill.run({
       data: { ...newState },
     });
+
     if (response.success) {
+      // 获取最新 store 并更新
+      const res = await fetchBillDetails({
+        month: store.month,
+        year: store.year,
+      });
+      dispatch(updateStore({ ...res.data }));
       httApi.handleSuccess(response, '新增成功', afterSuccess);
     }
   };
