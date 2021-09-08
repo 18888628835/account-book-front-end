@@ -33,8 +33,9 @@ const AddPage = () => {
     });
   };
 
-  const toBillDetails = () => {
-    history.push(paths.BILL_DETAILS);
+  const toPrePage = () => {
+    const prePath = sessionStorage.getItem('prePath');
+    history.push(prePath!);
   };
   const onTabsChange = i => {
     // 1收入 2支出
@@ -42,7 +43,7 @@ const AddPage = () => {
   };
   const afterSuccess = response => {
     httApi.handleSuccess(response, '新增成功', res => {
-      toBillDetails();
+      history.push(paths.BILL_DETAILS);
       setFormData(initialValue);
     });
   };
@@ -67,7 +68,7 @@ const AddPage = () => {
   return (
     <PanelContainer>
       <Wrap>
-        <div className='cancel' onClick={toBillDetails}>
+        <div className='cancel' onClick={toPrePage}>
           取消
         </div>
         <div className='tab_container'>

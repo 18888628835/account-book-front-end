@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import { useHistory } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { EditOutlined } from '@ant-design/icons';
 import Svg from '../svg/Svg';
@@ -11,9 +11,10 @@ const Layout = props => {
   const { footConfig } = props;
   const [active, setActive] = useState('');
   const history = useHistory();
-
+  const location = useLocation();
   const goAddPage = () => {
     history.push(paths.ADD_BILL);
+    sessionStorage.setItem('prePath', location.pathname);
   };
   const classes = tagName =>
     classNames('animate__animated', {
