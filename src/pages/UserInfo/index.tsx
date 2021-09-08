@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from 'react';
-import { Button, Input, Modal, Progress, Toast } from 'zarm';
+import { Button, Input, Modal, Progress } from 'zarm';
 import { useHistory } from 'react-router';
 import { Context } from '@/App';
 import UserInfoHeader from './components/header';

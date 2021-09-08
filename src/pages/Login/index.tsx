@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Wrap from './css';
 import httpApi from './service/server';
 import Image from './components/image';
 import LoginModal from './components/login_modal';
 import BackgroundBubble from 'components/background_bubble';
-import { Context } from '@/App';
 import { paths } from '../router';
 import { NoticeBar } from 'zarm';
 const data = [

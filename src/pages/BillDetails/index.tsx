@@ -1,6 +1,5 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Empty } from 'antd';
-import httpApi from './service/server';
 import Header from './components/header';
 import PanelContainer from '@/components/PanelContainer';
 import { Context } from '@/App';

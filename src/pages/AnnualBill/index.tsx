@@ -3,7 +3,7 @@ import PanelContainer from '@/components/PanelContainer';
 import useDatePicker from '@/hooks/useDatePicker';
 import moment from 'moment';
 import React, { useContext } from 'react';
-import { Cell, DatePicker, Icon, NavBar } from 'zarm';
+import { Cell, DatePicker, NavBar } from 'zarm';
 import Wrap from './css';
 import httpApi from './service/server';
 
