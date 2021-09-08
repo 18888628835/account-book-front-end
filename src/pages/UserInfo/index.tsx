@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Progress } from 'zarm';
+import React, { useContext, useRef } from 'react';
+import { Button, Input, Modal, Progress, Toast } from 'zarm';
 import { useHistory } from 'react-router';
 import { Context } from '@/App';
 import UserInfoHeader from './components/header';
@@ -9,6 +9,8 @@ import httpApi from './service/server';
 import Svg from '@/components/svg/Svg';
 import { updateStore } from '@/store/action';
 import { paths } from '../router';
+import useModal from '@/hooks/useModal/useModal';
+import useUserInfo from '@/hooks/useUserInfo';
 
 const calcPercent = (outLay: number, budget: number) => {
   if (!budget) {
@@ -23,10 +25,11 @@ const calcPercent = (outLay: number, budget: number) => {
 
 const UserInfo = () => {
   const clockIn = httpApi.servers.clockIn(undefined, { manual: true });
+  const { modalVisible, toggleModalVisible } = useModal();
   const { dispatch, store } = useContext(Context);
-
+  const inputRef = useRef<any>(null);
   const history = useHistory();
-
+  const { updateUserInfo } = useUserInfo();
   const onClockIn = async () => {
     const data = { date: Date.now() };
     const res = await clockIn.run({
@@ -48,7 +51,7 @@ const UserInfo = () => {
         history.push(paths.EDIT_USER_INFO);
         break;
       case 'editBudget':
-        prompt('请输入预算');
+        toggleModalVisible();
         break;
       default:
         break;
@@ -66,13 +69,15 @@ const UserInfo = () => {
       <UserInfoHeader onClockIn={onClockIn} />
       <div className='wrap_content'>
         <Wrapper title='账单' hasArrow onClick={toAnnualBillPage}>
-          <div>{store.month}月</div>
+          <div>{store?.month}月</div>
           {[
-            { type: '收入', money: store.totalIncome },
-            { type: '支出', money: store.totalOutlay },
+            { type: '收入', money: store?.totalIncome },
+            { type: '支出', money: store?.totalOutlay },
             {
               type: '结余',
-              money: Number(store.budget || 0) - Number(store.totalOutlay || 0),
+              money:
+                Number(store?.totalIncome || 0) -
+                Number(store?.totalOutlay || 0),
             },
           ].map(({ type, money }) => (
             <div key={type}>
@@ -97,8 +102,8 @@ const UserInfo = () => {
               )}
               shape='circle'
               percent={calcPercent(
-                Number(store.totalOutlay),
-                Number(store.budget)
+                Number(store?.totalOutlay),
+                Number(store?.budget)
               )}
               strokeShape='round'
               strokeWidth={8}
@@ -141,6 +146,29 @@ const UserInfo = () => {
             </div>
           ))}
         </Wrapper>
+        <Modal
+          closable
+          title='编辑预算'
+          visible={modalVisible}
+          onCancel={() => toggleModalVisible()}
+          footer={
+            <Button
+              block
+              onClick={async () => {
+                const value = inputRef.current!.input.state.value;
+                const result = await updateUserInfo({ budget: value });
+                if (result.success) {
+                  dispatch(updateStore({ budget: value }));
+                }
+                toggleModalVisible();
+              }}
+            >
+              确定
+            </Button>
+          }
+        >
+          <Input type='price' ref={inputRef} placeholder='请输入数字' />
+        </Modal>
       </div>
     </Wrap>
   );

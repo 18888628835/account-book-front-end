@@ -6,6 +6,7 @@ import { Icon, NavBar, Cell, ActionSheet, Modal, Button } from 'zarm';
 import { Avatar, TextField } from '@material-ui/core';
 import { Context } from '@/App';
 import { updateStore } from '@/store/action';
+import useModal from '@/hooks/useModal/useModal';
 
 const genderParamsMap = {
   男: true,
@@ -16,7 +17,7 @@ const EditUserInfo = () => {
   const { store, dispatch } = useContext(Context);
   const { updateUserInfo } = useUserInfo();
   const [actionSheetVisible, setActionSheetVisible] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
+  const { modalVisible, toggleModalVisible } = useModal();
   const [editedUserName, setEditedUserName] = useState('');
 
   const changeUserName = async newName => {
@@ -37,7 +38,7 @@ const EditUserInfo = () => {
   };
 
   const onChangeModalVisible = () => {
-    setModalVisible(!modalVisible);
+    toggleModalVisible();
   };
   const onChangeActionSheetVisible = () => {
     setActionSheetVisible(!actionSheetVisible);
@@ -90,9 +91,7 @@ const EditUserInfo = () => {
           hasArrow
           title='昵称'
           description={store.userName}
-          onClick={() => {
-            setModalVisible(!modalVisible);
-          }}
+          onClick={onChangeModalVisible}
         />
         <Cell
           hasArrow

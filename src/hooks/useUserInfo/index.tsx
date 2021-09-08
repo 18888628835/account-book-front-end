@@ -1,4 +1,3 @@
-import React from 'react';
 import httpApi from './service/server';
 
 const useUserInfo = () => {
