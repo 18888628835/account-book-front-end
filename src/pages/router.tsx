@@ -8,6 +8,7 @@ import Login from '@/pages/Login';
 import EditUserInfo from './EditUserInfo';
 import BillCharts from './BillCharts';
 import AnnualBill from './AnnualBill';
+import Homepage from './Homepage/Homepage';
 
 export const paths = {
   LOGIN: '/login',
@@ -18,6 +19,7 @@ export const paths = {
   BILL_CHARTS: '/bill/charts',
   ANNUAL_BILL: '/bill/annualBill',
   FULL_BUDGET: '/bill/fullBudget',
+  HOMEPAGE: '/homepage',
 };
 
 const Routes = () => {
@@ -30,6 +32,7 @@ const Routes = () => {
     BILL_CHARTS,
     ANNUAL_BILL,
     FULL_BUDGET,
+    HOMEPAGE,
   } = paths;
 
   return (
@@ -38,19 +41,19 @@ const Routes = () => {
         <Redirect to={LOGIN} />
       </Route>
       <Route path={LOGIN} exact component={Login} />
-      <Route path={ADD_BILL} exact component={BillAdd} />
       <Route path={EDIT_USER_INFO} exact component={EditUserInfo} />
       <Route path={FULL_BUDGET} exact component={AnnualBill} />
       <Route path={ANNUAL_BILL} exact component={AnnualBill} />
+      <Route path={BILL_DETAILS} exact component={BillDetail} />
       <Layout
         footConfig={[
-          [BILL_DETAILS, 'icon-history', '明细'],
-          [BILL_CHARTS, 'icon-chart-pie', '图表'],
-          [USER_INFO, 'icon-user-filling', '我的'],
+          [HOMEPAGE, 'icon-history'],
+          [BILL_CHARTS, 'icon-pie-chart'],
+          [USER_INFO, 'icon-user'],
         ]}
       >
+        <Route path={HOMEPAGE} exact component={Homepage} />
         <Route path={USER_INFO} exact component={UserInfo} />
-        <Route path={BILL_DETAILS} exact component={BillDetail} />
         <Route path={BILL_CHARTS} exact component={BillCharts} />
       </Layout>
     </Switch>

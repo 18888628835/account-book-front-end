@@ -5,6 +5,7 @@ const Wrap = styled.main`
   padding-right: 2vw;
   overflow-y: scroll;
   position: relative;
+  max-height: 100%;
 `;
 const PanelContainer = props => {
   return <Wrap>{props.children}</Wrap>;

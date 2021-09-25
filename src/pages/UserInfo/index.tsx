@@ -57,8 +57,9 @@ const UserInfo = () => {
         break;
     }
   };
-  const toAnnualBillPage = () => {
-    history.push(paths.ANNUAL_BILL);
+
+  const toBillDetails = () => {
+    history.push(paths.BILL_DETAILS);
   };
   const toFullBudgetPage = () => {
     history.push(paths.FULL_BUDGET);
@@ -68,7 +69,7 @@ const UserInfo = () => {
     <Wrap>
       <UserInfoHeader onClockIn={onClockIn} />
       <div className='wrap_content'>
-        <Wrapper title='账单' hasArrow onClick={toAnnualBillPage}>
+        <Wrapper title='账单' hasArrow onClick={toBillDetails}>
           <div>{store?.month}月</div>
           {[
             { type: '收入', money: store?.totalIncome },

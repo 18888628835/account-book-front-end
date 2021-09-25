@@ -43,7 +43,7 @@ const Login = () => {
     const timer = setTimeout(() => {
       clearTimeout(timer);
 
-      history.push(paths.BILL_DETAILS);
+      history.push(paths.USER_INFO);
     }, 800);
   };
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

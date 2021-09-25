@@ -7,10 +7,8 @@ import { ConfigProvider } from 'antd';
 import './index.css';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ConfigProvider locale={zhCN}>
-      <App />
-    </ConfigProvider>
-  </React.StrictMode>,
+  <ConfigProvider locale={zhCN}>
+    <App />
+  </ConfigProvider>,
   document.getElementById('root')
 );

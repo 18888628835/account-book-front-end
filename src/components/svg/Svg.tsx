@@ -6,7 +6,7 @@ const SvgS = styled.div`
   text-align: center;
   > svg {
     margin: 0 auto;
-    font-size: 2.11rem;
+    font-size: 2.033347rem;
   }
   > span {
     margin-top: 0.41rem;

@@ -1,7 +1,7 @@
 import useDatePicker from '@/hooks/useDatePicker';
 import moment from 'moment';
 import React from 'react';
-import { DatePicker, NavBar } from 'zarm';
+import { DatePicker, NavBar, Icon } from 'zarm';
 import Wrap from './_style';
 type HeaderProps = {
   date: Types.DateType;
@@ -13,7 +13,11 @@ const Header: React.FC<HeaderProps> = props => {
   const { toggleDatePickerVisible, datePickerVisible } = useDatePicker();
   return (
     <Wrap>
-      <NavBar title='布偶记账' className='nav_bar' />
+      <NavBar
+        title='月账单'
+        className='nav_bar'
+        left={<Icon type='arrow-left' onClick={() => window.history.back()} />}
+      />
       <section className='title'>
         <div className='container'>
           <div>{date.year}</div>
