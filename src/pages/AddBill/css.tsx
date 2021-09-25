@@ -1,13 +1,22 @@
 import styled from 'styled-components';
 
 const Wrap = styled.section`
-  position: relative;
+  &.appear {
+    bottom: 0;
+  }
+
+  position: absolute;
+  transition: all 0.3s;
+  left: 0;
+  bottom: -100%;
+  z-index: 10;
+  background-color: white;
   .cancel {
     text-align: center;
     position: absolute;
     z-index: 2;
     transform: translateY(58%);
-    right: 0;
+    right: 12px;
   }
   .za-tabs__header {
     display: flex;

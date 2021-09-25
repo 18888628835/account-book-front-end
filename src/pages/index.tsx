@@ -25,10 +25,14 @@ const Index = () => {
       month: moment().format('MM'),
       year: moment().format('YYYY'),
     };
+    const otherParams = {
+      addPageAppear: false,
+    };
     const response = await fetchBillDetails(initialDate);
     const initialStore = {
       ...res.data,
       ...initialDate,
+      ...otherParams,
       ...response.data,
     };
     dispatch(initStore(initialStore));

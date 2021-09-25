@@ -6,7 +6,6 @@ import NumberPad from './components/NumberPad';
 import httApi from './service/server';
 import Wrap from './css';
 import TabList from './components/TabList';
-import PanelContainer from '@/components/PanelContainer';
 import { paths } from '../router';
 import useBillDetails from '@/hooks/useBillDetails';
 import { Context } from '@/App';
@@ -20,7 +19,9 @@ const initialValue = {
   date: moment().format('YYYY-MM-DD'), //日期
 };
 type State = typeof initialValue;
-const AddPage = () => {
+type AddPageProps = React.HTMLAttributes<HTMLDivElement>;
+
+const AddPage: React.FC<AddPageProps> = props => {
   const history = useHistory();
   const { store, dispatch } = useContext(Context);
   const addBill = httApi.servers.addBill(undefined, { manual: true });
@@ -33,10 +34,6 @@ const AddPage = () => {
     });
   };
 
-  const toPrePage = () => {
-    const prePath = sessionStorage.getItem('prePath');
-    history.push(prePath!);
-  };
   const onTabsChange = i => {
     // 1收入 2支出
     onChange({ payType: i + 1 });
@@ -46,6 +43,9 @@ const AddPage = () => {
       history.push(paths.BILL_DETAILS);
       setFormData(initialValue);
     });
+  };
+  const onCloseAddPage = () => {
+    dispatch(updateStore({ addPageAppear: false }));
   };
   const onOk = async () => {
     const newState = {
@@ -66,32 +66,28 @@ const AddPage = () => {
     }
   };
   return (
-    <PanelContainer>
-      <Wrap>
-        <div className='cancel' onClick={toPrePage}>
-          取消
-        </div>
-        <div className='tab_container'>
-          <TabList
-            {...{ onChange, onTabsChange, typeName: formData.typeName }}
-          />
-        </div>
-        <div className='pad_container'>
-          <Remark
-            remark={formData.remark}
-            onChange={remark => {
-              onChange({ remark });
-            }}
-          />
-          <NumberPad
-            date={formData.date}
-            amount={formData.amount}
-            onChange={onChange}
-            onOk={onOk}
-          />
-        </div>
-      </Wrap>
-    </PanelContainer>
+    <Wrap className={props.className}>
+      <div className='cancel' onClick={onCloseAddPage}>
+        取消
+      </div>
+      <div className='tab_container'>
+        <TabList {...{ onChange, onTabsChange, typeName: formData.typeName }} />
+      </div>
+      <div className='pad_container'>
+        <Remark
+          remark={formData.remark}
+          onChange={remark => {
+            onChange({ remark });
+          }}
+        />
+        <NumberPad
+          date={formData.date}
+          amount={formData.amount}
+          onChange={onChange}
+          onOk={onOk}
+        />
+      </div>
+    </Wrap>
   );
 };
 
