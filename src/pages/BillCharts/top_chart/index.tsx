@@ -23,19 +23,15 @@ const TopChart = () => {
       series: [
         {
           type: 'pie',
-          radius: [0, 80],
+          roseType: 'radius',
+          radius: '100%',
           center: ['50%', '50%'],
-          roseType: 'area',
-          //标题与数字分二行显示
           label: {
-            formatter: '{name|{b}}\n{time|{d}%}',
-            minMargin: 5,
-            lineHeight: 15,
-            rich: {
-              time: {
-                fontSize: 10,
-                color: 'auto',
-              },
+            show: false,
+          },
+          emphasis: {
+            label: {
+              show: true,
             },
           },
           itemStyle: {

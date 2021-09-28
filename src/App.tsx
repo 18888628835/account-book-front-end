@@ -4,11 +4,22 @@ import { ConfigProvider } from 'zarm';
 import zhCN from 'zarm/lib/config-provider/locale/zh_CN';
 import { reducer, globalStore } from './store/reducer';
 import Index from './pages';
+import { ActionKind } from './store/action';
 
-export const Context = createContext<any>(null);
+export const Context = createContext<{
+  store: Types.RootObject;
+  dispatch: any;
+}>(
+  {} as {
+    store: Types.RootObject;
+    dispatch: any;
+  }
+);
 
 function App() {
-  const [store, dispatch] = useReducer(reducer, globalStore);
+  const [store, dispatch] = useReducer<
+    React.Reducer<Types.RootObject, ActionKind>
+  >(reducer, globalStore);
 
   return (
     <ConfigProvider locale={zhCN}>

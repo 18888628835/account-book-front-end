@@ -1,12 +1,15 @@
-import { INIT_STORE, UPDATE_STORE } from './action';
+import { ActionTypeKind, ActionKind } from './action';
 
-export const globalStore = {};
+export const globalStore: Types.RootObject = {} as Types.RootObject;
 
-export const reducer = (state: typeof globalStore, action) => {
+export const reducer: React.Reducer<typeof globalStore, ActionKind> = (
+  state,
+  action
+) => {
   switch (action.type) {
-    case INIT_STORE:
+    case ActionTypeKind.INIT_STORE:
       return { ...action.payload };
-    case UPDATE_STORE:
+    case ActionTypeKind.UPDATE_STORE:
       return { ...state, ...action.payload };
     default:
       break;
