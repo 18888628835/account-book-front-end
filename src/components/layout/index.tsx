@@ -20,7 +20,10 @@ const Layout = props => {
   return (
     <Wrap>
       <main className='main'>{props.children}</main>
-      <section className='foot_container'>
+      <section
+        className='foot_container'
+        style={{ backgroundColor: '#EDE3DB' }}
+      >
         <div className='link_list'>
           {footConfig.map(([path, name]) => {
             return (

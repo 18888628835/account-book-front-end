@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add --dev @types/ahooks
+  /usr/local/bin/node /usr/local/bin/yarn add echarts/features
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -14,17 +14,16 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.npm.taobao.org/@types%2fahooks: Not found
-      at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66992:18)
-      at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140763:22)
-      at Request.emit (events.js:400:28)
-      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141735:10)
-      at Request.emit (events.js:400:28)
-      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141657:12)
+  Error: https://github.com/echarts/features: ESOCKETTIMEDOUT
+      at ClientRequest.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141390:19)
       at Object.onceWrapper (events.js:519:28)
-      at IncomingMessage.emit (events.js:412:35)
-      at endReadableNT (internal/streams/readable.js:1317:12)
-      at processTicksAndRejections (internal/process/task_queues.js:82:21)
+      at ClientRequest.emit (events.js:400:28)
+      at TLSSocket.emitRequestTimeout (_http_client.js:790:9)
+      at Object.onceWrapper (events.js:519:28)
+      at TLSSocket.emit (events.js:412:35)
+      at TLSSocket.Socket._onTimeout (net.js:484:8)
+      at listOnTimeout (internal/timers.js:557:17)
+      at processTimers (internal/timers.js:500:7)
 
 npm manifest: 
   {
@@ -37,18 +36,31 @@ npm manifest:
     },
     "dependencies": {
       "@ant-design/icons": "^4.6.3",
+      "@emotion/react": "^11.4.1",
+      "@jiaminghi/charts": "^0.2.18",
+      "@jiaminghi/data-view-react": "^1.2.5",
       "@material-ui/core": "^4.12.3",
       "@material-ui/icons": "^4.11.2",
       "ahooks": "^2.10.9",
+      "animate.css": "^4.1.1",
       "antd": "^4.16.12",
+      "classnames": "^2.3.1",
+      "echarts": "^5.1.2",
+      "moment": "^2.29.1",
+      "path": "^0.12.7",
+      "query-string": "^7.0.1",
       "react": "^17.0.0",
       "react-dom": "^17.0.0",
+      "react-router": "^5.2.0",
+      "react-router-dom": "^5.2.0",
       "styled-components": "^5.3.0",
       "zarm": "^2.9.7"
     },
     "devDependencies": {
+      "@types/node": "^16.7.1",
       "@types/react": "^17.0.0",
       "@types/react-dom": "^17.0.0",
+      "@types/react-router-dom": "^5.1.8",
       "@types/styled-components": "^5.1.12",
       "@vitejs/plugin-react-refresh": "^1.3.1",
       "typescript": "^4.3.2",
@@ -299,7 +311,7 @@ Lockfile:
     dependencies:
       "@babel/helper-plugin-utils" "^7.14.5"
   
-  "@babel/runtime@^7.10.1", "@babel/runtime@^7.10.2", "@babel/runtime@^7.10.4", "@babel/runtime@^7.11.1", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.5", "@babel/runtime@^7.14.0", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7":
+  "@babel/runtime@^7.1.2", "@babel/runtime@^7.10.1", "@babel/runtime@^7.10.2", "@babel/runtime@^7.10.4", "@babel/runtime@^7.11.1", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.14.0", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7":
     version "7.15.3"
     resolved "https://registry.nlark.com/@babel/runtime/download/@babel/runtime-7.15.3.tgz#2e1c2880ca118e5b2f9988322bd8a7656a32502b"
     integrity sha1-LhwogMoRjlsvmYgyK9inZWoyUCs=
@@ -446,6 +458,17 @@ Lockfile:
     resolved "https://registry.nlark.com/@ctrl/tinycolor/download/@ctrl/tinycolor-3.4.0.tgz#c3c5ae543c897caa9c2a68630bed355be5f9990f"
     integrity sha1-w8WuVDyJfKqcKmhjC+01W+X5mQ8=
   
+  "@emotion/cache@^11.4.0":
+    version "11.4.0"
+    resolved "https://registry.nlark.com/@emotion/cache/download/@emotion/cache-11.4.0.tgz?cache=0&sync_timestamp=1620348775479&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40emotion%2Fcache%2Fdownload%2F%40emotion%2Fcache-11.4.0.tgz#293fc9d9a7a38b9aad8e9337e5014366c3b09ac0"
+    integrity sha1-KT/J2aeji5qtjpM35QFDZsOwmsA=
+    dependencies:
+      "@emotion/memoize" "^0.7.4"
+      "@emotion/sheet" "^1.0.0"
+      "@emotion/utils" "^1.0.0"
+      "@emotion/weak-memoize" "^0.2.5"
+      stylis "^4.0.3"
+  
   "@emotion/hash@^0.8.0":
     version "0.8.0"
     resolved "https://registry.nlark.com/@emotion/hash/download/@emotion/hash-0.8.0.tgz#bbbff68978fefdbe68ccb533bc8cbe1d1afb5413"
@@ -463,15 +486,105 @@ Lockfile:
     resolved "https://registry.npm.taobao.org/@emotion/memoize/download/@emotion/memoize-0.7.4.tgz?cache=0&sync_timestamp=1607211718513&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40emotion%2Fmemoize%2Fdownload%2F%40emotion%2Fmemoize-0.7.4.tgz#19bf0f5af19149111c40d98bb0cf82119f5d9eeb"
     integrity sha1-Gb8PWvGRSREcQNmLsM+CEZ9dnus=
   
+  "@emotion/memoize@^0.7.4":
+    version "0.7.5"
+    resolved "https://registry.npm.taobao.org/@emotion/memoize/download/@emotion/memoize-0.7.5.tgz?cache=0&sync_timestamp=1615986337535&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40emotion%2Fmemoize%2Fdownload%2F%40emotion%2Fmemoize-0.7.5.tgz#2c40f81449a4e554e9fc6396910ed4843ec2be50"
+    integrity sha1-LED4FEmk5VTp/GOWkQ7UhD7CvlA=
+  
+  "@emotion/react@^11.4.1":
+    version "11.4.1"
+    resolved "https://registry.nlark.com/@emotion/react/download/@emotion/react-11.4.1.tgz?cache=0&sync_timestamp=1628415954735&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40emotion%2Freact%2Fdownload%2F%40emotion%2Freact-11.4.1.tgz#a1b0b767b5bad57515ffb0cad9349614d27f4d57"
+    integrity sha1-obC3Z7W61XUV/7DK2TSWFNJ/TVc=
+    dependencies:
+      "@babel/runtime" "^7.13.10"
+      "@emotion/cache" "^11.4.0"
+      "@emotion/serialize" "^1.0.2"
+      "@emotion/sheet" "^1.0.2"
+      "@emotion/utils" "^1.0.0"
+      "@emotion/weak-memoize" "^0.2.5"
+      hoist-non-react-statics "^3.3.1"
+  
+  "@emotion/serialize@^1.0.2":
+    version "1.0.2"
+    resolved "https://registry.npm.taobao.org/@emotion/serialize/download/@emotion/serialize-1.0.2.tgz?cache=0&sync_timestamp=1617886963064&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40emotion%2Fserialize%2Fdownload%2F%40emotion%2Fserialize-1.0.2.tgz#77cb21a0571c9f68eb66087754a65fa97bfcd965"
+    integrity sha1-d8shoFccn2jrZgh3VKZfqXv82WU=
+    dependencies:
+      "@emotion/hash" "^0.8.0"
+      "@emotion/memoize" "^0.7.4"
+      "@emotion/unitless" "^0.7.5"
+      "@emotion/utils" "^1.0.0"
+      csstype "^3.0.2"
+  
+  "@emotion/sheet@^1.0.0", "@emotion/sheet@^1.0.2":
+    version "1.0.2"
+    resolved "https://registry.nlark.com/@emotion/sheet/download/@emotion/sheet-1.0.2.tgz?cache=0&sync_timestamp=1628415955187&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40emotion%2Fsheet%2Fdownload%2F%40emotion%2Fsheet-1.0.2.tgz#1d9ffde531714ba28e62dac6a996a8b1089719d0"
+    integrity sha1-HZ/95TFxS6KOYtrGqZaosQiXGdA=
+  
   "@emotion/stylis@^0.8.4":
     version "0.8.5"
     resolved "https://registry.npm.taobao.org/@emotion/stylis/download/@emotion/stylis-0.8.5.tgz#deacb389bd6ee77d1e7fcaccce9e16c5c7e78e04"
     integrity sha1-3qyzib1u530ef8rMzp4WxcfnjgQ=
   
-  "@emotion/unitless@^0.7.4":
+  "@emotion/unitless@^0.7.4", "@emotion/unitless@^0.7.5":
     version "0.7.5"
     resolved "https://registry.npm.taobao.org/@emotion/unitless/download/@emotion/unitless-0.7.5.tgz#77211291c1900a700b8a78cfafda3160d76949ed"
     integrity sha1-dyESkcGQCnALinjPr9oxYNdpSe0=
+  
+  "@emotion/utils@^1.0.0":
+    version "1.0.0"
+    resolved "https://registry.nlark.com/@emotion/utils/download/@emotion/utils-1.0.0.tgz#abe06a83160b10570816c913990245813a2fd6af"
+    integrity sha1-q+BqgxYLEFcIFskTmQJFgTov1q8=
+  
+  "@emotion/weak-memoize@^0.2.5":
+    version "0.2.5"
+    resolved "https://registry.npm.taobao.org/@emotion/weak-memoize/download/@emotion/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
+    integrity sha1-ju2YLi7m9/TkTCU+EpYpgHke/UY=
+  
+  "@jiaminghi/bezier-curve@*":
+    version "0.0.9"
+    resolved "https://registry.npm.taobao.org/@jiaminghi/bezier-curve/download/@jiaminghi/bezier-curve-0.0.9.tgz#5196aca93c8b061a612b4c3eabcedf9490cef6ee"
+    integrity sha1-UZasqTyLBhphK0w+q87flJDO9u4=
+    dependencies:
+      "@babel/runtime" "^7.5.5"
+  
+  "@jiaminghi/c-render@^0.4.3":
+    version "0.4.3"
+    resolved "https://registry.nlark.com/@jiaminghi/c-render/download/@jiaminghi/c-render-0.4.3.tgz?cache=0&sync_timestamp=1621080989869&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40jiaminghi%2Fc-render%2Fdownload%2F%40jiaminghi%2Fc-render-0.4.3.tgz#982ebd8f71b443bb9507834227834973ebd9b6d8"
+    integrity sha1-mC69j3G0Q7uVB4NCJ4NJc+vZttg=
+    dependencies:
+      "@babel/runtime" "^7.5.5"
+      "@jiaminghi/bezier-curve" "*"
+      "@jiaminghi/color" "*"
+      "@jiaminghi/transition" "*"
+  
+  "@jiaminghi/charts@^0.2", "@jiaminghi/charts@^0.2.18":
+    version "0.2.18"
+    resolved "https://registry.npm.taobao.org/@jiaminghi/charts/download/@jiaminghi/charts-0.2.18.tgz?cache=0&sync_timestamp=1604025557002&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40jiaminghi%2Fcharts%2Fdownload%2F%40jiaminghi%2Fcharts-0.2.18.tgz#63ded95200789fc1a1fd04b7fd9e56f58d22d90f"
+    integrity sha1-Y97ZUgB4n8Gh/QS3/Z5W9Y0i2Q8=
+    dependencies:
+      "@babel/runtime" "^7.5.5"
+      "@jiaminghi/c-render" "^0.4.3"
+  
+  "@jiaminghi/color@*":
+    version "0.1.1"
+    resolved "https://registry.npm.taobao.org/@jiaminghi/color/download/@jiaminghi/color-0.1.1.tgz#bddf9012dfce6982d3829a983ffeb91ee9dda7b6"
+    integrity sha1-vd+QEt/OaYLTgpqYP/65Hundp7Y=
+    dependencies:
+      "@babel/runtime" "^7.5.5"
+  
+  "@jiaminghi/data-view-react@^1.2.5":
+    version "1.2.5"
+    resolved "https://registry.npm.taobao.org/@jiaminghi/data-view-react/download/@jiaminghi/data-view-react-1.2.5.tgz#8817eaf83377b186ee32552dad9901547742ea0a"
+    integrity sha1-iBfq+DN3sYbuMlUtrZkBVHdC6go=
+    dependencies:
+      "@jiaminghi/charts" "^0.2"
+  
+  "@jiaminghi/transition@*":
+    version "1.1.11"
+    resolved "https://registry.npm.taobao.org/@jiaminghi/transition/download/@jiaminghi/transition-1.1.11.tgz#576d8af092434b34201eba5eaecc79dd33c8ad8c"
+    integrity sha1-V22K8JJDSzQgHrpersx53TPIrYw=
+    dependencies:
+      "@babel/runtime" "^7.5.5"
   
   "@material-ui/core@^4.12.3":
     version "4.12.3"
@@ -552,6 +665,11 @@ Lockfile:
       estree-walker "^2.0.1"
       picomatch "^2.2.2"
   
+  "@types/history@*":
+    version "4.7.9"
+    resolved "https://registry.nlark.com/@types/history/download/@types/history-4.7.9.tgz#1cfb6d60ef3822c589f18e70f8b12f9a28ce8724"
+    integrity sha1-HPttYO84IsWJ8Y5w+LEvmijOhyQ=
+  
   "@types/hoist-non-react-statics@*":
     version "3.3.1"
     resolved "https://registry.nlark.com/@types/hoist-non-react-statics/download/@types/hoist-non-react-statics-3.3.1.tgz?cache=0&sync_timestamp=1621241339435&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fhoist-non-react-statics%2Fdownload%2F%40types%2Fhoist-non-react-statics-3.3.1.tgz#1124aafe5118cb591977aeb1ceaaed1070eb039f"
@@ -565,6 +683,11 @@ Lockfile:
     resolved "https://registry.nlark.com/@types/js-cookie/download/@types/js-cookie-2.2.7.tgz#226a9e31680835a6188e887f3988e60c04d3f6a3"
     integrity sha1-ImqeMWgINaYYjoh/OYjmDATT9qM=
   
+  "@types/node@^16.7.1":
+    version "16.7.1"
+    resolved "https://registry.nlark.com/@types/node/download/@types/node-16.7.1.tgz#c6b9198178da504dfca1fd0be9b2e1002f1586f0"
+    integrity sha1-xrkZgXjaUE38of0L6bLhAC8VhvA=
+  
   "@types/prop-types@*":
     version "15.7.4"
     resolved "https://registry.nlark.com/@types/prop-types/download/@types/prop-types-15.7.4.tgz#fcf7205c25dff795ee79af1e30da2c9790808f11"
@@ -575,6 +698,23 @@ Lockfile:
     resolved "https://registry.nlark.com/@types/react-dom/download/@types/react-dom-17.0.9.tgz#441a981da9d7be117042e1a6fd3dac4b30f55add"
     integrity sha1-RBqYHanXvhFwQuGm/T2sSzD1Wt0=
     dependencies:
+      "@types/react" "*"
+  
+  "@types/react-router-dom@^5.1.8":
+    version "5.1.8"
+    resolved "https://registry.nlark.com/@types/react-router-dom/download/@types/react-router-dom-5.1.8.tgz#bf3e1c8149b3d62eaa206d58599de82df0241192"
+    integrity sha1-vz4cgUmz1i6qIG1YWZ3oLfAkEZI=
+    dependencies:
+      "@types/history" "*"
+      "@types/react" "*"
+      "@types/react-router" "*"
+  
+  "@types/react-router@*":
+    version "5.1.16"
+    resolved "https://registry.nlark.com/@types/react-router/download/@types/react-router-5.1.16.tgz#f3ba045fb96634e38b21531c482f9aeb37608a99"
+    integrity sha1-87oEX7lmNOOLIVMcSC+a6zdgipk=
+    dependencies:
+      "@types/history" "*"
       "@types/react" "*"
   
   "@types/react-transition-group@^4.2.0":
@@ -640,6 +780,11 @@ Lockfile:
       lodash.throttle "^4.1.1"
       resize-observer-polyfill "^1.5.1"
       screenfull "^5.0.0"
+  
+  animate.css@^4.1.1:
+    version "4.1.1"
+    resolved "https://registry.npm.taobao.org/animate.css/download/animate.css-4.1.1.tgz#614ec5a81131d7e4dc362a58143f7406abd68075"
+    integrity sha1-YU7FqBEx1+TcNipYFD90BqvWgHU=
   
   ansi-styles@^3.2.1:
     version "3.2.1"
@@ -891,6 +1036,11 @@ Lockfile:
     dependencies:
       ms "2.1.2"
   
+  decode-uri-component@^0.2.0:
+    version "0.2.0"
+    resolved "https://registry.nlark.com/decode-uri-component/download/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
+    integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
+  
   dom-align@^1.7.0:
     version "1.12.2"
     resolved "https://registry.nlark.com/dom-align/download/dom-align-1.12.2.tgz#0f8164ebd0c9c21b0c790310493cd855892acd4b"
@@ -903,6 +1053,14 @@ Lockfile:
     dependencies:
       "@babel/runtime" "^7.8.7"
       csstype "^3.0.2"
+  
+  echarts@^5.1.2:
+    version "5.1.2"
+    resolved "https://registry.nlark.com/echarts/download/echarts-5.1.2.tgz?cache=0&sync_timestamp=1623167264935&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fecharts%2Fdownload%2Fecharts-5.1.2.tgz#aa1ab0cef5b74fa2f7c620261a5f286893d30fd1"
+    integrity sha1-qhqwzvW3T6L3xiAmGl8oaJPTD9E=
+    dependencies:
+      tslib "2.0.3"
+      zrender "5.1.1"
   
   electron-to-chromium@^1.3.811:
     version "1.3.814"
@@ -928,6 +1086,11 @@ Lockfile:
     version "2.0.2"
     resolved "https://registry.npm.taobao.org/estree-walker/download/estree-walker-2.0.2.tgz#52f010178c2a4c117a7757cfe942adb7d2da4cac"
     integrity sha1-UvAQF4wqTBF6d1fP6UKtt9LaTKw=
+  
+  filter-obj@^1.1.0:
+    version "1.1.0"
+    resolved "https://registry.npm.taobao.org/filter-obj/download/filter-obj-1.1.0.tgz?cache=0&sync_timestamp=1617699897053&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ffilter-obj%2Fdownload%2Ffilter-obj-1.1.0.tgz#9b311112bc6c6127a16e016c6c5d7f19e0805c5b"
+    integrity sha1-mzERErxsYSehbgFsbF1/GeCAXFs=
   
   fsevents@~2.3.2:
     version "2.3.2"
@@ -961,7 +1124,19 @@ Lockfile:
     dependencies:
       function-bind "^1.1.1"
   
-  hoist-non-react-statics@^3.0.0, hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.2:
+  history@^4.9.0:
+    version "4.10.1"
+    resolved "https://registry.nlark.com/history/download/history-4.10.1.tgz?cache=0&sync_timestamp=1628891129290&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fhistory%2Fdownload%2Fhistory-4.10.1.tgz#33371a65e3a83b267434e2b3f3b1b4c58aad4cf3"
+    integrity sha1-MzcaZeOoOyZ0NOKz87G0xYqtTPM=
+    dependencies:
+      "@babel/runtime" "^7.1.2"
+      loose-envify "^1.2.0"
+      resolve-pathname "^3.0.0"
+      tiny-invariant "^1.0.2"
+      tiny-warning "^1.0.0"
+      value-equal "^1.0.1"
+  
+  hoist-non-react-statics@^3.0.0, hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.1, hoist-non-react-statics@^3.3.2:
     version "3.3.2"
     resolved "https://registry.nlark.com/hoist-non-react-statics/download/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
     integrity sha1-7OCsr3HWLClpwuxZ/v9CpLGoW0U=
@@ -972,6 +1147,11 @@ Lockfile:
     version "1.0.4"
     resolved "https://registry.nlark.com/hyphenate-style-name/download/hyphenate-style-name-1.0.4.tgz#691879af8e220aea5750e8827db4ef62a54e361d"
     integrity sha1-aRh5r44iCupXUOiCfbTvYqVONh0=
+  
+  inherits@2.0.3:
+    version "2.0.3"
+    resolved "https://registry.nlark.com/inherits/download/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
+    integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
   
   intersection-observer@^0.7.0:
     version "0.7.0"
@@ -994,6 +1174,11 @@ Lockfile:
     version "1.1.3"
     resolved "https://registry.npm.taobao.org/is-in-browser/download/is-in-browser-1.1.3.tgz?cache=0&sync_timestamp=1612712343060&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fis-in-browser%2Fdownload%2Fis-in-browser-1.1.3.tgz#56ff4db683a078c6082eb95dad7dc62e1d04f835"
     integrity sha1-Vv9NtoOgeMYILrldrX3GLh0E+DU=
+  
+  isarray@0.0.1:
+    version "0.0.1"
+    resolved "https://registry.nlark.com/isarray/download/isarray-0.0.1.tgz#8a18acfca9a8f4177e09abfc6038939b05d1eedf"
+    integrity sha1-ihis/Kmo9Bd+Cav8YDiTmwXR7t8=
   
   js-cookie@^2.2.1:
     version "2.2.1"
@@ -1114,19 +1299,27 @@ Lockfile:
     resolved "https://registry.nlark.com/lodash/download/lodash-4.17.21.tgz?cache=0&sync_timestamp=1618847150612&other_urls=https%3A%2F%2Fregistry.nlark.com%2Flodash%2Fdownload%2Flodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
     integrity sha1-Z5WRxWTDv/quhFTPCz3zcMPWkRw=
   
-  loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
+  loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.3.1, loose-envify@^1.4.0:
     version "1.4.0"
     resolved "https://registry.npm.taobao.org/loose-envify/download/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
     integrity sha1-ce5R+nvkyuwaY4OffmgtgTLTDK8=
     dependencies:
       js-tokens "^3.0.0 || ^4.0.0"
   
+  mini-create-react-context@^0.4.0:
+    version "0.4.1"
+    resolved "https://registry.nlark.com/mini-create-react-context/download/mini-create-react-context-0.4.1.tgz#072171561bfdc922da08a60c2197a497cc2d1d5e"
+    integrity sha1-ByFxVhv9ySLaCKYMIZekl8wtHV4=
+    dependencies:
+      "@babel/runtime" "^7.12.1"
+      tiny-warning "^1.0.3"
+  
   minimist@^1.2.5:
     version "1.2.5"
     resolved "https://registry.npm.taobao.org/minimist/download/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
     integrity sha1-Z9ZgFLZqaoqqDAg8X9WN9OTpdgI=
   
-  moment@^2.24.0, moment@^2.25.3:
+  moment@^2.24.0, moment@^2.25.3, moment@^2.29.1:
     version "2.29.1"
     resolved "https://registry.npm.taobao.org/moment/download/moment-2.29.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fmoment%2Fdownload%2Fmoment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
     integrity sha1-sr52n6MZQL6e7qZGnAdeNQBvo9M=
@@ -1160,6 +1353,21 @@ Lockfile:
     version "1.0.7"
     resolved "https://registry.nlark.com/path-parse/download/path-parse-1.0.7.tgz#fbc114b60ca42b30d9daf5858e4bd68bbedb6735"
     integrity sha1-+8EUtgykKzDZ2vWFjkvWi77bZzU=
+  
+  path-to-regexp@^1.7.0:
+    version "1.8.0"
+    resolved "https://registry.nlark.com/path-to-regexp/download/path-to-regexp-1.8.0.tgz?cache=0&sync_timestamp=1618847046445&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fpath-to-regexp%2Fdownload%2Fpath-to-regexp-1.8.0.tgz#887b3ba9d84393e87a0a0b9f4cb756198b53548a"
+    integrity sha1-iHs7qdhDk+h6CgufTLdWGYtTVIo=
+    dependencies:
+      isarray "0.0.1"
+  
+  path@^0.12.7:
+    version "0.12.7"
+    resolved "https://registry.npm.taobao.org/path/download/path-0.12.7.tgz#d4dc2a506c4ce2197eb481ebfcd5b36c0140b10f"
+    integrity sha1-1NwqUGxM4hl+tIHr/NWzbAFAsQ8=
+    dependencies:
+      process "^0.11.1"
+      util "^0.10.3"
   
   performance-now@^2.1.0:
     version "2.1.0"
@@ -1195,6 +1403,11 @@ Lockfile:
       nanoid "^3.1.23"
       source-map-js "^0.6.2"
   
+  process@^0.11.1:
+    version "0.11.10"
+    resolved "https://registry.npm.taobao.org/process/download/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
+    integrity sha1-czIwDoQBYb2j5podHZGn1LwW8YI=
+  
   prop-types@^15.6.2, prop-types@^15.7.2:
     version "15.7.2"
     resolved "https://registry.nlark.com/prop-types/download/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
@@ -1203,6 +1416,16 @@ Lockfile:
       loose-envify "^1.4.0"
       object-assign "^4.1.1"
       react-is "^16.8.1"
+  
+  query-string@^7.0.1:
+    version "7.0.1"
+    resolved "https://registry.nlark.com/query-string/download/query-string-7.0.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fquery-string%2Fdownload%2Fquery-string-7.0.1.tgz#45bd149cf586aaa582dffc7ec7a8ad97dd02f75d"
+    integrity sha1-Rb0UnPWGqqWC3/x+x6itl90C910=
+    dependencies:
+      decode-uri-component "^0.2.0"
+      filter-obj "^1.1.0"
+      split-on-first "^1.0.0"
+      strict-uri-encode "^2.0.0"
   
   raf@^3.4.1:
     version "3.4.1"
@@ -1564,7 +1787,7 @@ Lockfile:
       object-assign "^4.1.1"
       scheduler "^0.20.2"
   
-  react-is@^16.12.0, react-is@^16.7.0, react-is@^16.8.1:
+  react-is@^16.12.0, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
     version "16.13.1"
     resolved "https://registry.nlark.com/react-is/download/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
     integrity sha1-eJcppNw23imZ3BVt1sHZwYzqVqQ=
@@ -1583,6 +1806,35 @@ Lockfile:
     version "0.10.0"
     resolved "https://registry.nlark.com/react-refresh/download/react-refresh-0.10.0.tgz?cache=0&sync_timestamp=1629476344767&other_urls=https%3A%2F%2Fregistry.nlark.com%2Freact-refresh%2Fdownload%2Freact-refresh-0.10.0.tgz#2f536c9660c0b9b1d500684d9e52a65e7404f7e3"
     integrity sha1-L1NslmDAubHVAGhNnlKmXnQE9+M=
+  
+  react-router-dom@^5.2.0:
+    version "5.2.0"
+    resolved "https://registry.nlark.com/react-router-dom/download/react-router-dom-5.2.0.tgz#9e65a4d0c45e13289e66c7b17c7e175d0ea15662"
+    integrity sha1-nmWk0MReEyieZsexfH4XXQ6hVmI=
+    dependencies:
+      "@babel/runtime" "^7.1.2"
+      history "^4.9.0"
+      loose-envify "^1.3.1"
+      prop-types "^15.6.2"
+      react-router "5.2.0"
+      tiny-invariant "^1.0.2"
+      tiny-warning "^1.0.0"
+  
+  react-router@5.2.0, react-router@^5.2.0:
+    version "5.2.0"
+    resolved "https://registry.nlark.com/react-router/download/react-router-5.2.0.tgz#424e75641ca8747fbf76e5ecca69781aa37ea293"
+    integrity sha1-Qk51ZByodH+/duXsyml4GqN+opM=
+    dependencies:
+      "@babel/runtime" "^7.1.2"
+      history "^4.9.0"
+      hoist-non-react-statics "^3.1.0"
+      loose-envify "^1.3.1"
+      mini-create-react-context "^0.4.0"
+      path-to-regexp "^1.7.0"
+      prop-types "^15.6.2"
+      react-is "^16.6.0"
+      tiny-invariant "^1.0.2"
+      tiny-warning "^1.0.0"
   
   react-transition-group@^4.4.0:
     version "4.4.2"
@@ -1611,6 +1863,11 @@ Lockfile:
     version "1.5.1"
     resolved "https://registry.nlark.com/resize-observer-polyfill/download/resize-observer-polyfill-1.5.1.tgz?cache=0&sync_timestamp=1618846967396&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fresize-observer-polyfill%2Fdownload%2Fresize-observer-polyfill-1.5.1.tgz#0e9020dd3d21024458d4ebd27e23e40269810464"
     integrity sha1-DpAg3T0hAkRY1OvSfiPkAmmBBGQ=
+  
+  resolve-pathname@^3.0.0:
+    version "3.0.0"
+    resolved "https://registry.npm.taobao.org/resolve-pathname/download/resolve-pathname-3.0.0.tgz#99d02224d3cf263689becbb393bc560313025dcd"
+    integrity sha1-mdAiJNPPJjaJvsuzk7xWAxMCXc0=
   
   resolve@^1.20.0:
     version "1.20.0"
@@ -1679,6 +1936,16 @@ Lockfile:
     resolved "https://registry.nlark.com/source-map/download/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
     integrity sha1-igOdLRAh0i0eoUyA2OpGi6LvP8w=
   
+  split-on-first@^1.0.0:
+    version "1.1.0"
+    resolved "https://registry.nlark.com/split-on-first/download/split-on-first-1.1.0.tgz#f610afeee3b12bce1d0c30425e76398b78249a5f"
+    integrity sha1-9hCv7uOxK84dDDBCXnY5i3gkml8=
+  
+  strict-uri-encode@^2.0.0:
+    version "2.0.0"
+    resolved "https://registry.npm.taobao.org/strict-uri-encode/download/strict-uri-encode-2.0.0.tgz#b9c7330c7042862f6b142dc274bbcc5866ce3546"
+    integrity sha1-ucczDHBChi9rFC3CdLvMWGbONUY=
+  
   string-convert@^0.2.0:
     version "0.2.1"
     resolved "https://registry.nlark.com/string-convert/download/string-convert-0.2.1.tgz#6982cc3049fbb4cd85f8b24568b9d9bf39eeff97"
@@ -1700,6 +1967,11 @@ Lockfile:
       shallowequal "^1.1.0"
       supports-color "^5.5.0"
   
+  stylis@^4.0.3:
+    version "4.0.10"
+    resolved "https://registry.npm.taobao.org/stylis/download/stylis-4.0.10.tgz?cache=0&sync_timestamp=1617798385355&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fstylis%2Fdownload%2Fstylis-4.0.10.tgz#446512d1097197ab3f02fb3c258358c3f7a14240"
+    integrity sha1-RGUS0Qlxl6s/Avs8JYNYw/ehQkA=
+  
   supports-color@^5.3.0, supports-color@^5.5.0:
     version "5.5.0"
     resolved "https://registry.nlark.com/supports-color/download/supports-color-5.5.0.tgz#e2e69a44ac8772f78a1ec0b35b689df6530efc8f"
@@ -1707,7 +1979,12 @@ Lockfile:
     dependencies:
       has-flag "^3.0.0"
   
-  tiny-warning@^1.0.2:
+  tiny-invariant@^1.0.2:
+    version "1.1.0"
+    resolved "https://registry.npm.taobao.org/tiny-invariant/download/tiny-invariant-1.1.0.tgz#634c5f8efdc27714b7f386c35e6760991d230875"
+    integrity sha1-Y0xfjv3CdxS384bDXmdgmR0jCHU=
+  
+  tiny-warning@^1.0.0, tiny-warning@^1.0.2, tiny-warning@^1.0.3:
     version "1.0.3"
     resolved "https://registry.npm.taobao.org/tiny-warning/download/tiny-warning-1.0.3.tgz#94a30db453df4c643d0fd566060d60a875d84754"
     integrity sha1-lKMNtFPfTGQ9D9VmBg1gqHXYR1Q=
@@ -1722,10 +1999,27 @@ Lockfile:
     resolved "https://registry.npm.taobao.org/toggle-selection/download/toggle-selection-1.0.6.tgz#6e45b1263f2017fa0acc7d89d78b15b8bf77da32"
     integrity sha1-bkWxJj8gF/oKzH2J14sVuL932jI=
   
+  tslib@2.0.3:
+    version "2.0.3"
+    resolved "https://registry.nlark.com/tslib/download/tslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
+    integrity sha1-jgdBrEX8DCJuWKF7/D5kubxsphw=
+  
   typescript@^4.3.2:
     version "4.3.5"
     resolved "https://registry.nlark.com/typescript/download/typescript-4.3.5.tgz#4d1c37cc16e893973c45a06886b7113234f119f4"
     integrity sha1-TRw3zBbok5c8RaBohrcRMjTxGfQ=
+  
+  util@^0.10.3:
+    version "0.10.4"
+    resolved "https://registry.nlark.com/util/download/util-0.10.4.tgz#3aa0125bfe668a4672de58857d3ace27ecb76901"
+    integrity sha1-OqASW/5mikZy3liFfTrOJ+y3aQE=
+    dependencies:
+      inherits "2.0.3"
+  
+  value-equal@^1.0.1:
+    version "1.0.1"
+    resolved "https://registry.npm.taobao.org/value-equal/download/value-equal-1.0.1.tgz#1e0b794c734c5c0cade179c437d356d931a34d6c"
+    integrity sha1-Hgt5THNMXAyt4XnEN9NW2TGjTWw=
   
   vite@^2.4.4:
     version "2.5.0"
@@ -1762,3 +2056,10 @@ Lockfile:
       popper.js "^1.15.0"
       raf "^3.4.1"
       react-native-camera-roll-picker "1.2.3"
+  
+  zrender@5.1.1:
+    version "5.1.1"
+    resolved "https://registry.nlark.com/zrender/download/zrender-5.1.1.tgz?cache=0&sync_timestamp=1630140908990&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fzrender%2Fdownload%2Fzrender-5.1.1.tgz#0515f4f8cc0f4742f02a6b8819550a6d13d64c5c"
+    integrity sha1-BRX0+MwPR0LwKmuIGVUKbRPWTFw=
+    dependencies:
+      tslib "2.0.3"

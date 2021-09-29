@@ -12,7 +12,6 @@ const Wrap = styled.section`
   }
   .foot_container {
     /* background: var(--main-bg-color); */
-    background: #545967;
     border-radius: 13.333vw 13.333vw 0 0;
     padding: 6.667vw;
     padding-top: 16px;
