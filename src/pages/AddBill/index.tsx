@@ -26,7 +26,7 @@ const AddPage: React.FC<AddPageProps> = props => {
   const history = useHistory();
   const { store, dispatch } = useContext(Context);
   const addBill = httApi.servers.addBill(undefined, { manual: true });
-  const { fetchBillDetails } = useBillDetails();
+  const { fetchBillDetails, fetchYearBill } = useBillDetails();
   const [formData, setFormData] = useState<State>(initialValue);
 
   const onChange: (obj: any) => void = obj => {
@@ -63,8 +63,9 @@ const AddPage: React.FC<AddPageProps> = props => {
         month: store.month,
         year: store.year,
       });
+      const yearBill = await fetchYearBill(store.year);
       backgroundSoundPlay(SoundType.SUCCESS);
-      dispatch(updateStore({ ...res.data }));
+      dispatch(updateStore({ monthBill: res.data, yearBill: yearBill.data }));
       httApi.handleSuccess(response, '新增成功', afterSuccess);
     }
   };

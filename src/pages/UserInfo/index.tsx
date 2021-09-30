@@ -72,13 +72,13 @@ const UserInfo = () => {
         <Wrapper title='账单' hasArrow onClick={toBillDetails}>
           <div>{store?.month}月</div>
           {[
-            { type: '收入', money: store?.totalIncome },
-            { type: '支出', money: store?.totalOutlay },
+            { type: '收入', money: store?.monthBill?.totalIncome },
+            { type: '支出', money: store?.monthBill?.totalOutlay },
             {
               type: '结余',
               money:
-                Number(store?.totalIncome || 0) -
-                Number(store?.totalOutlay || 0),
+                Number(store?.monthBill?.totalIncome || 0) -
+                Number(store?.monthBill?.totalOutlay || 0),
             },
           ].map(({ type, money }) => (
             <div key={type}>
@@ -103,7 +103,7 @@ const UserInfo = () => {
               )}
               shape='circle'
               percent={calcPercent(
-                Number(store?.totalOutlay),
+                Number(store?.monthBill?.totalOutlay),
                 Number(store?.budget)
               )}
               strokeShape='round'
@@ -117,10 +117,11 @@ const UserInfo = () => {
               {
                 title: '剩余预算:',
                 number:
-                  Number(store?.budget || 0) - Number(store?.totalOutlay || 0),
+                  Number(store?.budget || 0) -
+                  Number(store?.monthBill?.totalOutlay || 0),
               },
               { title: '本月预算:', number: store?.budget || 0 },
-              { title: '本月支出:', number: store?.totalOutlay },
+              { title: '本月支出:', number: store?.monthBill?.totalOutlay },
             ].map(({ title, number }) => (
               <div key={title}>
                 <span>{title}</span>

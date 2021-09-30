@@ -14,7 +14,7 @@ const Index = () => {
   const { pathname } = location;
   const { dispatch } = useContext(Context);
   const { fetchUserInfo } = useUserInfo();
-  const { fetchBillDetails } = useBillDetails();
+  const { fetchBillDetails, fetchYearBill } = useBillDetails();
   const ref = useRef(0);
 
   const initCore = async () => {
@@ -29,11 +29,13 @@ const Index = () => {
       addPageAppear: false,
     };
     const response = await fetchBillDetails(initialDate);
+    const yearBill = await fetchYearBill(initialDate.year);
     const initialStore = {
       ...res.data,
       ...initialDate,
       ...otherParams,
-      ...response.data,
+      monthBill: response.data,
+      yearBill: yearBill.data, //年度账单
     };
     dispatch(initStore(initialStore));
   };

@@ -38,8 +38,15 @@ declare module Types {
     month: string;
     year: string;
     addPageAppear: boolean;
-    totalIncome: number;
-    totalOutlay: number;
-    list: List[];
+    monthBill: {
+      totalIncome: number;
+      totalOutlay: number;
+      list: List[];
+    };
+    yearBill: {
+      totalIncome: number;
+      totalOutlay: number;
+      list: List[];
+    };
   }
 }

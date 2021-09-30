@@ -29,7 +29,7 @@ const Homepage = () => {
       <div className='bill_total_container'>
         <div className='remain_budget'>
           <div>剩余预算</div>
-          <div>￥{Number(store.budget) * 12 - store.totalOutlay}</div>
+          <div>￥{Number(store.budget) * 12 - store.yearBill?.totalOutlay}</div>
         </div>
         <div className='bottom_box' />
         <div className='top_box'>
@@ -38,11 +38,11 @@ const Homepage = () => {
             <div className='income_outlay_container'>
               <div>
                 <h4>支出</h4>
-                <span>￥{store.totalOutlay}</span>
+                <span>￥{store.yearBill?.totalOutlay}</span>
               </div>
               <div>
                 <h4>收入</h4>
-                <span>￥{store.totalIncome}</span>
+                <span>￥{store.yearBill?.totalIncome}</span>
               </div>
             </div>
           </div>

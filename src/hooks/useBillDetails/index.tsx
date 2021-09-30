@@ -15,7 +15,14 @@ const useBillDetails = () => {
     });
     return result;
   };
-
+  const fetchYearBill = async year => {
+    const result = await billDetails.run({
+      params: {
+        year,
+      },
+    });
+    return result;
+  };
   const updateBillDetails = async data => {
     const result = await updateBill.run({
       data,
@@ -23,7 +30,7 @@ const useBillDetails = () => {
     return result;
   };
 
-  return { fetchBillDetails, updateBillDetails };
+  return { fetchBillDetails, updateBillDetails, fetchYearBill };
 };
 
 export default useBillDetails;

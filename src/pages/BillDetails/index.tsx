@@ -10,12 +10,13 @@ import useBillDetails from '@/hooks/useBillDetails';
 
 const BillDetail = () => {
   const { store, dispatch } = useContext(Context);
-  const { fetchBillDetails, updateBillDetails } = useBillDetails();
+  const { fetchBillDetails, updateBillDetails, fetchYearBill } =
+    useBillDetails();
 
   const onChangeDate = async (date: Types.DateType) => {
     const result = await fetchBillDetails(date);
     dispatch(updateStore(date));
-    dispatch(updateStore(result.data));
+    dispatch(updateStore({ monthBill: result.data }));
   };
 
   const loadUserBills = async () => {
@@ -23,8 +24,9 @@ const BillDetail = () => {
       month: store.month,
       year: store.year,
     });
+    const yearBill = await fetchYearBill(store.year);
     //把本月总收入跟总支出更新到仓库中
-    dispatch(updateStore(result.data));
+    dispatch(updateStore({ monthBill: result.data, yearBill: yearBill.data }));
   };
 
   const onUpdateSubmit = async data => {
@@ -47,17 +49,17 @@ const BillDetail = () => {
         onChangeDate={onChangeDate}
         date={{ year: store.year, month: store.month }}
         total={{
-          totalIncome: store?.totalIncome,
-          totalOutlay: store?.totalOutlay,
+          totalIncome: store?.monthBill?.totalIncome,
+          totalOutlay: store?.monthBill?.totalOutlay,
         }}
       />
       <div className='bill_details_container'>
         <PanelContainer>
-          {(store?.list || []).length === 0 ? (
+          {(store?.monthBill?.list || []).length === 0 ? (
             <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
           ) : (
             <CellContent
-              data={store?.list}
+              data={store?.monthBill?.list}
               {...{ onDelete, onUpdateSubmit, loadUserBills }}
             />
           )}
