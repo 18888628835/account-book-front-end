@@ -42,8 +42,9 @@ const renderChart = id => {
   const option: ECOption = {
     backgroundColor: 'white',
     grid: {
-      left: '10%',
+      left: '0%',
       bottom: '20%',
+      right: 0,
       top: 10,
     },
     xAxis: {

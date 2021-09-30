@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Wrap = styled.section`
   width: 100%;
   > header {
-    padding: 4.267vw;
+    padding: 5.33vw;
     padding-bottom: 0;
     display: flex;
     justify-content: space-between;
@@ -18,7 +18,7 @@ const Wrap = styled.section`
     }
     > span:nth-child(2) {
       display: block;
-      font-size: 3.346672rem;
+      font-size: 3.43rem;
     }
   }
   .bill_total_container {
@@ -56,9 +56,11 @@ const Wrap = styled.section`
         width: 100%;
         height: 41.37vh;
         background-color: white;
-        border-radius: 50px;
-        padding-top: 5.54vh;
+        border-radius: 13.33vw;
+        padding-top: 6.54vh;
         #bar_charts {
+          width: 90%;
+          margin: 0 auto;
           height: 18.35vh;
           margin-bottom: 5.54vh;
         }

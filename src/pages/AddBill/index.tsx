@@ -10,6 +10,7 @@ import { paths } from '../router';
 import useBillDetails from '@/hooks/useBillDetails';
 import { Context } from '@/App';
 import { updateStore } from '@/store/action';
+import { backgroundSoundPlay, SoundType } from '@/utils/backgroundSoundPlay';
 
 const initialValue = {
   payType: 1, //1支出 2收入
@@ -45,6 +46,7 @@ const AddPage: React.FC<AddPageProps> = props => {
     });
   };
   const onCloseAddPage = () => {
+    backgroundSoundPlay(SoundType.POP);
     dispatch(updateStore({ addPageAppear: false }));
   };
   const onOk = async () => {
@@ -61,6 +63,7 @@ const AddPage: React.FC<AddPageProps> = props => {
         month: store.month,
         year: store.year,
       });
+      backgroundSoundPlay(SoundType.SUCCESS);
       dispatch(updateStore({ ...res.data }));
       httApi.handleSuccess(response, '新增成功', afterSuccess);
     }
