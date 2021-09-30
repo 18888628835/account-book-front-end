@@ -2,13 +2,14 @@ import styled from 'styled-components';
 
 const Wrap = styled.section`
   &.appear {
-    bottom: 0;
+    transform: translateY(0);
   }
 
   position: absolute;
   transition: all 0.3s;
   left: 0;
-  bottom: -100%;
+  top: 0;
+  transform: translateY(100%);
   z-index: 10;
   background-color: white;
   .cancel {

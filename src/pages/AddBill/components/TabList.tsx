@@ -3,6 +3,7 @@ import { Panel, Tabs } from 'zarm';
 import classNames from 'classnames';
 import Svg from '@/components/svg/Svg';
 import { incomeList, outlayList } from '../store';
+import { backgroundSoundPlay, SoundType } from '@/utils/backgroundSoundPlay';
 
 type TabListPops = {
   onTabsChange: (i: any) => void;
@@ -17,6 +18,10 @@ const TabList: React.FC<TabListPops> = props => {
       animate__rubberBand: typeName === _selectKey,
     });
   };
+  const changeTypeName = typeName => {
+    onChange({ typeName });
+    backgroundSoundPlay(SoundType.JUMP);
+  };
   return (
     <Tabs swipeable onChange={onTabsChange}>
       <Panel title='支出'>
@@ -26,7 +31,7 @@ const TabList: React.FC<TabListPops> = props => {
               <div
                 key={typeName}
                 className={classes(typeName)}
-                onClick={() => onChange({ typeName })}
+                onClick={() => changeTypeName(typeName)}
               >
                 <Svg {...{ name: typeName, tagName, key: typeName }} />
               </div>
@@ -41,7 +46,7 @@ const TabList: React.FC<TabListPops> = props => {
               <div
                 key={tagName}
                 className={classes(typeName)}
-                onClick={() => onChange({ typeName })}
+                onClick={() => changeTypeName(typeName)}
               >
                 <Svg {...{ name: typeName, tagName, key: typeName }} />
               </div>
