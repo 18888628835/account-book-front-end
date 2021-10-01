@@ -21,19 +21,26 @@ type ECOption = echarts.ComposeOption<
 
 // 注册必须的组件
 echarts.use([GridComponent, DatasetComponent, BarChart, CanvasRenderer]);
-
-const renderChart = id => {
+var myChart;
+const renderChart = (
+  id,
+  data: {
+    date: string;
+    outlay: number;
+  }[]
+) => {
   const chartDom = document.getElementById(id);
   if (!chartDom) {
     return null;
   }
-  var category = ['4', '5', '6', '7', '8', '9'];
-  var barData: number[] = [];
+  if (myChart) {
+    myChart.dispose();
+  }
+  var category = data.map(item => item.date);
+  var barData = data.map(item => item.outlay);
   const colors: string[] = [];
-  for (var i = 0; i < 6; i++) {
-    var b = Math.random() * 200;
-    barData.push(b);
-    if (i === 5) {
+  for (var i = 0; i < barData.length; i++) {
+    if (i === barData.length - 1) {
       colors.push('#FF754E');
       continue;
     }
@@ -88,7 +95,7 @@ const renderChart = id => {
       },
     ],
   };
-  var myChart = echarts.init(chartDom);
+  myChart = echarts.init(chartDom);
   myChart.setOption(option);
   return myChart;
 };

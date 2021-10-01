@@ -5,17 +5,37 @@ import React, { useContext, useEffect } from 'react';
 import Wrap from './_style';
 import renderChart from './renderChart';
 
+const getChartData = (data: Types.List[]) => {
+  const newData: {
+    date: string;
+    outlay: number;
+  }[] = [];
+  for (let i = 0; i < data.length; i++) {
+    //过滤六个月内的数据
+    if (i < 6) {
+      newData.push({
+        date: data[i].time.split('-')[1],
+        outlay: data[i].outlay,
+      });
+    }
+  }
+  return newData.reverse();
+};
+
 const Homepage = () => {
   const { store } = useContext(Context);
 
   useEffect(() => {
-    const myChart = renderChart('bar_charts');
-    const resize = () => myChart?.resize();
-    window.addEventListener('resize', resize);
-    return () => {
-      window.removeEventListener('resize', resize);
-    };
-  }, []);
+    if (store.yearBill?.totalIncome) {
+      const chartData = getChartData(store?.yearBill?.list || []);
+      const myChart = renderChart('bar_charts', chartData);
+      const resize = () => myChart?.resize();
+      window.addEventListener('resize', resize);
+      return () => {
+        window.removeEventListener('resize', resize);
+      };
+    }
+  }, [store.yearBill]);
   return (
     <Wrap>
       <header>
