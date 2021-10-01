@@ -1,19 +1,21 @@
 import { Context } from '@/App';
 import PanelContainer from '@/components/PanelContainer';
+import useBillDetails from '@/hooks/useBillDetails';
 import useDatePicker from '@/hooks/useDatePicker';
 import moment from 'moment';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Cell, DatePicker, NavBar } from 'zarm';
 import Wrap from './css';
 import httpApi from './service/server';
-
+const initialYear = new Date().getFullYear();
 const AnnualBill = () => {
-  const { store, dispatch } = useContext(Context);
+  const [year, setYear] = useState(initialYear);
   const userYearBills = httpApi.servers.getBillsByDate({
     params: {
-      year: store.year || new Date().getFullYear(),
+      year: initialYear,
     },
   });
+
   const { toggleDatePickerVisible, datePickerVisible } = useDatePicker();
   return (
     <Wrap>
@@ -23,7 +25,7 @@ const AnnualBill = () => {
         left={
           <div className='container'>
             <div onClick={() => toggleDatePickerVisible()}>
-              <span className='month'>{store.year}年</span>
+              <span className='month'>{year}年</span>
               <DatePicker
                 onCancel={() => toggleDatePickerVisible()}
                 onOk={value => {
@@ -33,6 +35,7 @@ const AnnualBill = () => {
                       year,
                     },
                   });
+                  setYear(Number(year));
                   toggleDatePickerVisible();
                 }}
                 visible={datePickerVisible}
@@ -46,7 +49,10 @@ const AnnualBill = () => {
       <section className='title'>
         <div className='container'>
           <div>结余</div>
-          <div>{userYearBills.data?.data?.totalOutlay}</div>
+          <div>
+            {Number(userYearBills.data?.data?.totalIncome) -
+              Number(userYearBills.data?.data?.totalOutlay)}
+          </div>
         </div>
         <div className='container'>
           <div>收入</div>
@@ -73,12 +79,12 @@ const AnnualBill = () => {
           return (
             <Cell
               key={time}
-              title={moment(time).format('M月')}
+              title={moment(time).format('MM月')}
               description={
                 <div className='cell_title_wrap'>
                   <span>{income}</span>
                   <span>{outlay}</span>
-                  <span>结余</span>
+                  <span>{Number(income) - Number(outlay)}</span>
                 </div>
               }
             />

@@ -6,7 +6,6 @@ import NumberPad from './components/NumberPad';
 import httApi from './service/server';
 import Wrap from './css';
 import TabList from './components/TabList';
-import { paths } from '../router';
 import useBillDetails from '@/hooks/useBillDetails';
 import { Context } from '@/App';
 import { updateStore } from '@/store/action';
@@ -26,7 +25,8 @@ const AddPage: React.FC<AddPageProps> = props => {
   const history = useHistory();
   const { store, dispatch } = useContext(Context);
   const addBill = httApi.servers.addBill(undefined, { manual: true });
-  const { fetchBillDetails, fetchYearBill } = useBillDetails();
+  const { fetchBillDetails, fetchYearBill, fetchStatistics } = useBillDetails();
+
   const [formData, setFormData] = useState<State>(initialValue);
 
   const onChange: (obj: any) => void = obj => {
@@ -41,8 +41,8 @@ const AddPage: React.FC<AddPageProps> = props => {
   };
   const afterSuccess = response => {
     httApi.handleSuccess(response, '新增成功', res => {
-      history.push(paths.BILL_DETAILS);
       setFormData(initialValue);
+      dispatch(updateStore({ addPageAppear: false }));
     });
   };
   const onCloseAddPage = () => {
@@ -64,8 +64,15 @@ const AddPage: React.FC<AddPageProps> = props => {
         year: store.year,
       });
       const yearBill = await fetchYearBill(store.year);
+      const statistics = await fetchStatistics();
       backgroundSoundPlay(SoundType.SUCCESS);
-      dispatch(updateStore({ monthBill: res.data, yearBill: yearBill.data }));
+      dispatch(
+        updateStore({
+          monthBill: res.data,
+          yearBill: yearBill.data,
+          statistics: statistics.data,
+        })
+      );
       httApi.handleSuccess(response, '新增成功', afterSuccess);
     }
   };

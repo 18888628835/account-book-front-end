@@ -61,9 +61,6 @@ const UserInfo = () => {
   const toBillDetails = () => {
     history.push(paths.BILL_DETAILS);
   };
-  const toFullBudgetPage = () => {
-    history.push(paths.FULL_BUDGET);
-  };
 
   return (
     <Wrap>
@@ -87,12 +84,7 @@ const UserInfo = () => {
             </div>
           ))}
         </Wrapper>
-        <Wrapper
-          title={`${store?.month}月总预算`}
-          hasArrow
-          description='查看全部'
-          onClick={toFullBudgetPage}
-        >
+        <Wrapper title={`${store?.month}月预算`}>
           <div className='circle_wrap'>
             <Progress
               text={percent => (

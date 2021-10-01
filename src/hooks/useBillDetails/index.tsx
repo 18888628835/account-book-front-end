@@ -8,6 +8,9 @@ const useBillDetails = () => {
   const updateBill = httpApi.servers.updateBill(undefined, {
     manual: true,
   });
+  const statistics = httpApi.servers.getStatistics(undefined, {
+    manual: true,
+  });
 
   const fetchBillDetails = async (date: { month: string; year: string }) => {
     const result = await billDetails.run({
@@ -30,7 +33,16 @@ const useBillDetails = () => {
     return result;
   };
 
-  return { fetchBillDetails, updateBillDetails, fetchYearBill };
+  const fetchStatistics = async () => {
+    const result = await statistics.run();
+    return result;
+  };
+  return {
+    fetchBillDetails,
+    updateBillDetails,
+    fetchYearBill,
+    fetchStatistics,
+  };
 };
 
 export default useBillDetails;

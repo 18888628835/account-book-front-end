@@ -48,5 +48,6 @@ declare module Types {
       totalOutlay: number;
       list: List[];
     };
+    statistics: { name: string; value: number }[];
   }
 }

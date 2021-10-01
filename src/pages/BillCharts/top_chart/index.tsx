@@ -1,7 +1,9 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import * as echarts from 'echarts';
+import { Context } from '@/App';
 
 const TopChart = () => {
+  const { store } = useContext(Context);
   const createCharts = (id, data) => {
     const chartDom = document.getElementById(id);
     const myChart = echarts.init(chartDom!);
@@ -166,21 +168,15 @@ const TopChart = () => {
     return myChart;
   };
   useEffect(() => {
-    const data = [
-      { value: 21, name: '汽油' },
-      { value: 19, name: '焦炭' },
-      { value: 16, name: '煤油' },
-      { value: 7, name: '原煤' },
-      { value: 3, name: '天然气1' },
-      { value: 18, name: '天然气2' },
-    ];
-    const myChart = createCharts('top_chart', data);
-    const resize = () => myChart.resize();
-    window.addEventListener('resize', resize);
-    return () => {
-      window.removeEventListener('resize', resize);
-    };
-  }, []);
+    if (store.statistics) {
+      const myChart = createCharts('top_chart', store.statistics);
+      const resize = () => myChart.resize();
+      window.addEventListener('resize', resize);
+      return () => {
+        window.removeEventListener('resize', resize);
+      };
+    }
+  }, [store.statistics]);
 
   return <div id='top_chart' style={{ width: '100%', height: 'inherit' }} />;
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import { Panel, Tabs } from 'zarm';
 import classNames from 'classnames';
 import Svg from '@/components/svg/Svg';
-import { incomeList, outlayList } from '../store';
+import { incomeList, outlayList } from '@/store/typeStore';
 import { backgroundSoundPlay, SoundType } from '@/utils/backgroundSoundPlay';
 
 type TabListPops = {

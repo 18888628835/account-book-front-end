@@ -1,9 +1,11 @@
 import { Context } from '@/App';
 import { AlignRightOutlined } from '@ant-design/icons';
 import { Avatar } from '@material-ui/core';
+import { useHistory } from 'react-router';
 import React, { useContext, useEffect } from 'react';
 import Wrap from './_style';
 import renderChart from './renderChart';
+import { paths } from '../router';
 
 const getChartData = (data: Types.List[]) => {
   const newData: {
@@ -24,7 +26,10 @@ const getChartData = (data: Types.List[]) => {
 
 const Homepage = () => {
   const { store } = useContext(Context);
-
+  const history = useHistory();
+  const toFullBudgetPage = () => {
+    history.push(paths.FULL_BUDGET);
+  };
   useEffect(() => {
     if (store.yearBill?.totalIncome) {
       const chartData = getChartData(store?.yearBill?.list || []);
@@ -40,7 +45,10 @@ const Homepage = () => {
     <Wrap>
       <header>
         <Avatar alt='me' src={store.avatar} />
-        <AlignRightOutlined style={{ fontSize: '26px' }} />
+        <AlignRightOutlined
+          style={{ fontSize: '26px' }}
+          onClick={toFullBudgetPage}
+        />
       </header>
       <div className='year_budget'>
         <span>全年预算</span>

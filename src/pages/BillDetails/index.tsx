@@ -10,8 +10,12 @@ import useBillDetails from '@/hooks/useBillDetails';
 
 const BillDetail = () => {
   const { store, dispatch } = useContext(Context);
-  const { fetchBillDetails, updateBillDetails, fetchYearBill } =
-    useBillDetails();
+  const {
+    fetchBillDetails,
+    updateBillDetails,
+    fetchYearBill,
+    fetchStatistics,
+  } = useBillDetails();
 
   const onChangeDate = async (date: Types.DateType) => {
     const result = await fetchBillDetails(date);
@@ -25,8 +29,15 @@ const BillDetail = () => {
       year: store.year,
     });
     const yearBill = await fetchYearBill(store.year);
+    const statistics = await fetchStatistics();
     //把本月总收入跟总支出更新到仓库中
-    dispatch(updateStore({ monthBill: result.data, yearBill: yearBill.data }));
+    dispatch(
+      updateStore({
+        monthBill: result.data,
+        yearBill: yearBill.data,
+        statistics: statistics.data,
+      })
+    );
   };
 
   const onUpdateSubmit = async data => {
