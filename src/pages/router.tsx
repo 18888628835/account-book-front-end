@@ -3,7 +3,6 @@ import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 import Layout from 'components/layout';
 import BillDetail from '@/pages/BillDetails';
 import UserInfo from '@/pages/UserInfo';
-import BillAdd from '@/pages/AddBill';
 import Login from '@/pages/Login';
 import EditUserInfo from './EditUserInfo';
 import BillCharts from './BillCharts';
@@ -25,7 +24,6 @@ export const paths = {
 const Routes = () => {
   const {
     LOGIN,
-    ADD_BILL,
     EDIT_USER_INFO,
     USER_INFO,
     BILL_DETAILS,

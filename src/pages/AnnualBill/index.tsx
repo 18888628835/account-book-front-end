@@ -1,14 +1,13 @@
-import { Context } from '@/App';
 import PanelContainer from '@/components/PanelContainer';
-import useBillDetails from '@/hooks/useBillDetails';
 import useDatePicker from '@/hooks/useDatePicker';
 import moment from 'moment';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Cell, DatePicker, NavBar } from 'zarm';
 import Wrap from './css';
 import httpApi from './service/server';
-const initialYear = new Date().getFullYear();
+
 const AnnualBill = () => {
+  const initialYear = new Date().getFullYear();
   const [year, setYear] = useState(initialYear);
   const userYearBills = httpApi.servers.getBillsByDate({
     params: {
@@ -41,7 +40,7 @@ const AnnualBill = () => {
                 visible={datePickerVisible}
                 mode='year'
               />
-              <span className='san'></span>
+              <span className='san' />
             </div>
           </div>
         }
@@ -51,7 +50,7 @@ const AnnualBill = () => {
           <div>结余</div>
           <div>
             {Number(userYearBills.data?.data?.totalIncome) -
-              Number(userYearBills.data?.data?.totalOutlay)}
+              Number(userYearBills.data?.data?.totalOutlay) || ''}
           </div>
         </div>
         <div className='container'>

@@ -4,9 +4,9 @@ const Wrap = styled.section`
   flex: 1;
   overflow-y: hidden;
   overflow-x: hidden;
-  background-color: #f6f6f6;
+
   .user_info_header {
-    background-color: white;
+    background-color: var(--main-bg-color);
     header {
       padding: 16px;
     }
@@ -25,6 +25,7 @@ const Wrap = styled.section`
       .da_ka {
         width: 70px;
         text-align: center;
+        font-size: 1.86rem;
       }
     }
     .user_data {
@@ -40,7 +41,10 @@ const Wrap = styled.section`
   }
   .wrap_content {
     overflow-y: scroll;
-    max-height: calc(100vh - 17rem);
+    max-height: 64.24vh;
+    @media (max-height: 600px) {
+      max-height: 60.24vh;
+    }
   }
   .bill_container {
     margin: 15px 0;

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import classNames from 'classnames';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import Svg from '../svg/Svg';
 import Wrap from './_style';
 import AddBill from '@/pages/AddBill';
@@ -12,6 +12,7 @@ const Layout = props => {
   const { footConfig } = props;
   const { store, dispatch } = useContext(Context);
   const [active, setActive] = useState('');
+  const location = useLocation();
   const addPageAppear = () => {
     backgroundSoundPlay(SoundType.POP);
     dispatch(updateStore({ addPageAppear: true }));
@@ -23,12 +24,18 @@ const Layout = props => {
   const onSoundClick = () => backgroundSoundPlay(SoundType.DU);
 
   return (
-    <Wrap>
+    <Wrap
+      {...{
+        backgroundColor:
+          location.pathname === '/homepage'
+            ? '#EDE3DB'
+            : location.pathname === '/bill/charts'
+            ? '#545967'
+            : 'var(--vice-bg-color)',
+      }}
+    >
       <main className='main'>{props.children}</main>
-      <section
-        className='foot_container'
-        style={{ backgroundColor: '#EDE3DB' }}
-      >
+      <section className='foot_container'>
         <div className='link_list'>
           {footConfig.map(([path, name]) => {
             return (

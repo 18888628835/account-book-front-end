@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Wrap = styled.section`
+const Wrap = styled.section<{ backgroundColor: string }>`
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -11,14 +11,13 @@ const Wrap = styled.section`
     flex-direction: column;
   }
   .foot_container {
-    /* background: var(--main-bg-color); */
+    background-color: ${props => props.backgroundColor};
     border-radius: 13.333vw 13.333vw 0 0;
     padding: 6.667vw;
     padding-top: 16px;
     .link_list {
       display: flex;
       justify-content: space-between;
-      background-color: white;
       padding: 5.333vw;
       border-radius: 8.8vw;
       background: #ffffff;
