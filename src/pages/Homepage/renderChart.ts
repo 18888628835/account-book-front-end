@@ -87,9 +87,8 @@ const renderChart = (
         barWidth: 10,
         itemStyle: {
           borderRadius: 8,
-          color: params => {
-            return colors[params.dataIndex];
-          },
+          // @ts-ignore
+          color: params => colors[params.dataIndex],
         },
         data: barData,
       },

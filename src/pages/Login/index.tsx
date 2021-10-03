@@ -48,7 +48,7 @@ const Login = () => {
   };
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.target;
+    const form: any = e.target;
     const result = await validate(form.phone.value);
     if (result) {
       const res = await login.run({
