@@ -8,6 +8,8 @@ import {
 } from 'echarts/charts';
 import {
   TitleComponent,
+  LegendComponent,
+  LegendComponentOption,
   // 组件类型的定义后缀都为 ComponentOption
   TitleComponentOption,
   GridComponent,
@@ -27,12 +29,14 @@ type ECOption = echarts.ComposeOption<
   | TitleComponentOption
   | GridComponentOption
   | DatasetComponentOption
+  | LegendComponentOption
 >;
 
 // 注册必须的组件
 echarts.use([
   TitleComponent,
   TooltipComponent,
+  LegendComponent,
   GridComponent,
   DatasetComponent,
   TransformComponent,
