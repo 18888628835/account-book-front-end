@@ -20,6 +20,9 @@ export default defineConfig({
         rewrite: path => path.replace(/^\/public/, 'public'), // 将 /api 重写为空
       },
     },
+    fs: {
+      strict: false,
+    },
   },
   resolve: {
     alias: {

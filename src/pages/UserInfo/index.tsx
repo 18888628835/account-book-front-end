@@ -10,7 +10,7 @@ import Svg from '@/components/svg/Svg';
 import { updateStore } from '@/store/action';
 import { paths } from '../router';
 import useModal from '@/hooks/useModal/useModal';
-import useUserInfo from '@/hooks/useUserInfo';
+import useUserInfo from '@/hooks/useUserInfo/useUserInfo';
 
 const calcPercent = (outLay: number, budget: number) => {
   if (!budget) {

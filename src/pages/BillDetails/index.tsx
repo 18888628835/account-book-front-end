@@ -6,7 +6,7 @@ import { Context } from '@/App';
 import { updateStore } from '@/store/action';
 import Wrap from './css';
 import CellContent from './components/CellContent';
-import useBillDetails from '@/hooks/useBillDetails';
+import useBillDetails from '@/hooks/useBillDetails/useBillDetails';
 
 const BillDetail = () => {
   const { store, dispatch } = useContext(Context);

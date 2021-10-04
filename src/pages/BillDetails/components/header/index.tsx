@@ -1,7 +1,8 @@
-import useDatePicker from '@/hooks/useDatePicker';
+import useDatePicker from '@/hooks/useDatePicker/useDatePicker';
+import { LeftOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import React from 'react';
-import { DatePicker, NavBar, Icon } from 'zarm';
+import { DatePicker, NavBar } from 'zarm';
 import Wrap from './_style';
 type HeaderProps = {
   date: Types.DateType;
@@ -16,7 +17,7 @@ const Header: React.FC<HeaderProps> = props => {
       <NavBar
         title='月账单'
         className='nav_bar'
-        left={<Icon type='arrow-left' onClick={() => window.history.back()} />}
+        left={<LeftOutlined onClick={() => window.history.back()} />}
       />
       <section className='title'>
         <div className='container'>

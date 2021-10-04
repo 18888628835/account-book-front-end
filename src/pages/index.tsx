@@ -2,12 +2,12 @@ import React, { useEffect, useRef, useContext } from 'react';
 import { BrowserRouter as _Router, useLocation } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import 'zarm/dist/zarm.css';
-import useUserInfo from '@/hooks/useUserInfo';
+import useUserInfo from '@/hooks/useUserInfo/useUserInfo';
 import { initStore } from '@/store/action';
 import moment from 'moment';
 import { Context } from '@/App';
 import Routes from './router';
-import useBillDetails from '@/hooks/useBillDetails';
+import useBillDetails from '@/hooks/useBillDetails/useBillDetails';
 
 const Index = () => {
   const location = useLocation();

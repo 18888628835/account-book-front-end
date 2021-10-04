@@ -6,7 +6,7 @@ import NumberPad from './components/NumberPad';
 import httApi from './service/server';
 import Wrap from './css';
 import TabList from './components/TabList';
-import useBillDetails from '@/hooks/useBillDetails';
+import useBillDetails from '@/hooks/useBillDetails/useBillDetails';
 import { Context } from '@/App';
 import { updateStore } from '@/store/action';
 import { backgroundSoundPlay, SoundType } from '@/utils/backgroundSoundPlay';
