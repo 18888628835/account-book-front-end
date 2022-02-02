@@ -1,3 +1,10 @@
+/*
+ * @Author: 邱彦兮
+ * @Date: 2021-10-04 22:44:42
+ * @LastEditors: 邱彦兮
+ * @LastEditTime: 2022-02-02 19:18:10
+ * @FilePath: /account-book-front-end/src/pages/Login/components/login_modal/index.tsx
+ */
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -37,7 +44,7 @@ const index = props => {
               endIcon={<SendIcon />}
               type='submit'
             >
-              SIGN IN
+              登陆/注册
             </Button>
           </div>
         </form>

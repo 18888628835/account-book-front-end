@@ -62,4 +62,5 @@ h6 {
   margin: 0 auto;
   overflow-y: hidden;
   overflow-x: hidden;
+  /* max-width: 800px; */
 }

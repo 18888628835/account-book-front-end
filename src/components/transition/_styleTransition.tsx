@@ -56,19 +56,19 @@ export const Wrap = styled.div`
     opacity: 0;
   }
   /* BottomIn-TopOut样式 */
-  .TopIn-BottomOut-enter {
+  .BottomIn-TopOut-enter {
     opacity: 0;
     transform: translateY(180%);
   }
-  .TopIn-BottomOut-enter-active {
+  .BottomIn-TopOut-enter-active {
     transform: translateY(0);
     opacity: 1;
   }
-  .TopIn-BottomOut-exit {
+  .BottomIn-TopOut-exit {
     opacity: 1;
     transform: translateY(0);
   }
-  .TopIn-BottomOut-exit-active {
+  .BottomIn-TopOut-exit-active {
     transform: translateY(-180%);
     opacity: 0;
   }

@@ -40,10 +40,9 @@ const AddPage: React.FC<AddPageProps> = props => {
     onChange({ payType: i + 1 });
   };
   const afterSuccess = response => {
-    httApi.handleSuccess(response, '新增成功', res => {
-      setFormData(initialValue);
-      dispatch(updateStore({ addPageAppear: false }));
-    });
+    setFormData(initialValue);
+    dispatch(updateStore({ addPageAppear: false }));
+    history.push('/bill/details');
   };
   const onCloseAddPage = () => {
     backgroundSoundPlay(SoundType.POP);

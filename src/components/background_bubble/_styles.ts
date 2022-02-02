@@ -1,3 +1,10 @@
+/*
+ * @Author: 邱彦兮
+ * @Date: 2021-10-04 22:44:42
+ * @LastEditors: 邱彦兮
+ * @LastEditTime: 2022-02-02 19:24:06
+ * @FilePath: /account-book-front-end/src/components/background_bubble/_styles.ts
+ */
 import styled from 'styled-components';
 
 const Wrap = styled.ul`
@@ -21,65 +28,37 @@ const Wrap = styled.ul`
     height: 50px;
     color: var(--main-color);
     animation: bubble 15s infinite;
-    &:nth-child(1) {
+    &:nth-child(2n + 0) {
       left: 10%;
     }
-    &:nth-child(2) {
+    &:nth-child(2n + 1) {
       left: 20%;
       width: 60px;
       height: 60px;
       animation-duration: 7s;
       animation-delay: 2s;
     }
-    &:nth-child(3) {
-      left: 25%;
-      animation-delay: 4s;
-    }
-    &:nth-child(4) {
-      left: 40%;
+
+    &:nth-child(3n) {
       width: 60px;
       height: 60px;
       background-color: rgba(#fff, 0.3);
-      animation-duration: 8s;
+      left: 30%;
+      animation-delay: 4s;
     }
-    &:nth-child(5) {
-      left: 70%;
-    }
-    &:nth-child(6) {
-      left: 50%;
+
+    &:nth-child(4n) {
+      left: 40%;
       width: 80px;
       height: 80px;
       background-color: rgba(#fff, 0.2);
       animation-delay: 3s;
     }
-    &:nth-child(7) {
-      left: 32%;
+    &:nth-child(5n) {
+      left: 50%;
       width: 90px;
       height: 90px;
       animation-delay: 2s;
-    }
-    &:nth-child(8) {
-      left: 55%;
-      width: 40px;
-      height: 40px;
-      font-size: 12px;
-      animation-duration: 15s;
-      animation-delay: 4s;
-    }
-    &:nth-child(9) {
-      left: 25%;
-      width: 40px;
-      height: 40px;
-      background-color: rgba(#fff, 0.3);
-      font-size: 12px;
-      animation-duration: 12s;
-      animation-delay: 2s;
-    }
-    &:nth-child(10) {
-      left: 5%;
-      width: 70px;
-      height: 70px;
-      animation-delay: 5s;
     }
   }
 
